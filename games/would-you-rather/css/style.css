@@ -75,11 +75,69 @@ body {
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 .nav-actions {
   display: flex;
   gap: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .top-nav {
+    padding: calc(0.45rem + var(--safe-top)) 0.75rem 0.45rem;
+  }
+
+  .nav-link-hub {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+    white-space: nowrap;
+  }
+
+  .nav-title {
+    font-size: 0.95rem;
+  }
+
+  /* 手機端將 4 個按鈕排列成 2x2 方陣 (每行 2 個)，避免橫向擁擠 */
+  .nav-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0.25rem;
+  }
+
+  .btn-icon {
+    width: 1.85rem;
+    height: 1.85rem;
+    font-size: 0.85rem;
+  }
+
+  /* 手機端資訊列適配：避免連播徽章與題數擠壓折行 */
+  .info-bar {
+    padding: 0.5rem 0.75rem;
+    gap: 0.4rem;
+  }
+
+  .category-badge {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    white-space: nowrap;
+  }
+
+  .timer-box {
+    font-size: 0.88rem;
+  }
+
+  .cycle-status-badge {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.45rem;
+    white-space: nowrap;
+  }
+
+  .counter-text {
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
 }
 
 .btn-icon {
