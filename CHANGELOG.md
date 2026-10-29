@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.3] - 2026-10-30
+
+### Fixed
+- 💄 **題目內容垂直置中且文字一律齊左排列**：
+  - 為題目容器（`.card-content`）設定 `align-items: center`（垂直置中）並保持 `justify-content: flex-start; text-align: left;`（文字靠左齊頭）。
+  - 當題目折為多行時，文字保持向左對齊的自然閱讀習慣，而在卡片上下空間中維持精確垂直置中。
+
 ## [1.4.2] - 2026-10-30
 
 ### Changed

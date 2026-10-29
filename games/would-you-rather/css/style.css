@@ -493,11 +493,16 @@ body {
 }
 
 .card-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  text-align: left;
   word-break: break-word;
+  padding: 1rem 0;
 }
 
 @media (min-width: 768px) {
