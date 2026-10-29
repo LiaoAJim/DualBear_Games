@@ -64,8 +64,6 @@ class WouldYouRatherGame {
       tallyB: document.getElementById('tallyB'),
       percentA: document.getElementById('percentA'),
       percentB: document.getElementById('percentB'),
-      barFillA: document.getElementById('barFillA'),
-      barFillB: document.getElementById('barFillB'),
       btnPrev: document.getElementById('btnPrev'),
       btnNext: document.getElementById('btnNext'),
       btnResetVote: document.getElementById('btnResetVote'),
@@ -1031,8 +1029,6 @@ class WouldYouRatherGame {
     if (total === 0) {
       this.dom.percentA.textContent = "0%";
       this.dom.percentB.textContent = "0%";
-      this.dom.barFillA.style.width = "0%";
-      this.dom.barFillB.style.width = "0%";
       return;
     }
 
@@ -1041,8 +1037,6 @@ class WouldYouRatherGame {
 
     this.dom.percentA.textContent = `${pctA}%`;
     this.dom.percentB.textContent = `${pctB}%`;
-    this.dom.barFillA.style.width = `${pctA}%`;
-    this.dom.barFillB.style.width = `${pctB}%`;
   }
 
   // ═══════════════════════════════════════════

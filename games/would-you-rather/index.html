@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>極限二選一 (Would You Rather) - 聚會破冰熱身</title>
   <meta name="description" content="聚會破冰首選！荒謬、靈魂考驗、社交兩難二選一，全場表態引爆話題！">
-  <link rel="stylesheet" href="css/style.css?v=2.7.5">
+  <link rel="stylesheet" href="css/style.css?v=2.7.7">
 </head>
 <body>
   <!-- 頂部導航列 -->
   <header class="top-nav">
     <a href="../../index.html" class="nav-link-hub" id="backToHub">
-      <span>🏠</span> 回大廳
+      <span class="hub-icon">🏠</span>
+      <span class="hub-text">回大廳</span>
     </a>
     <h1 class="nav-title">⚖️ 極限二選一</h1>
     <div class="nav-actions">
@@ -47,6 +48,7 @@
       <article class="option-card option-a" id="cardA">
         <div class="card-header">
           <span class="card-tag tag-a">A 選項</span>
+          <div class="vote-percentage" id="percentA">0%</div>
           <div class="vote-tally-group">
             <div class="vote-tally">
               <span>🗳️</span>
@@ -56,18 +58,13 @@
           </div>
         </div>
         <div class="card-content" id="contentA">題目加載中...</div>
-        <div class="card-footer">
-          <div class="stats-bar-wrapper">
-            <div class="stats-bar-fill fill-a" id="barFillA"></div>
-          </div>
-          <div class="vote-percentage" id="percentA">0%</div>
-        </div>
       </article>
 
       <!-- 選項 B -->
       <article class="option-card option-b" id="cardB">
         <div class="card-header">
           <span class="card-tag tag-b">B 選項</span>
+          <div class="vote-percentage" id="percentB">0%</div>
           <div class="vote-tally-group">
             <div class="vote-tally">
               <span>🗳️</span>
@@ -77,12 +74,6 @@
           </div>
         </div>
         <div class="card-content" id="contentB">題目加載中...</div>
-        <div class="card-footer">
-          <div class="stats-bar-wrapper">
-            <div class="stats-bar-fill fill-b" id="barFillB"></div>
-          </div>
-          <div class="vote-percentage" id="percentB">0%</div>
-        </div>
       </article>
     </section>
 
@@ -349,6 +340,6 @@
   </aside>
 
   <!-- 引入模組化腳本 -->
-  <script type="module" src="js/app.js?v=2.7.5"></script>
+  <script type="module" src="js/app.js?v=2.7.7"></script>
 </body>
 </html>

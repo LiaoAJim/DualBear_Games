@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.2] - 2026-10-30
+
+### Changed
+- 🎨 **百分比數字上移至卡片頂部標題列，移除占比條**：
+  - 徹底移除彩色占比長條（`stats-bar-wrapper`）與卡片底部 footer，大幅釋放垂直空間，讓選項題目居中放大好讀。
+  - 將百分比數字（如 `50%`）上移至卡片頂部標題列（`card-header`），完美居中排列於「A 選項 / B 選項」標籤與右側「🗳️ 票數」的中間。
+
+## [1.4.1] - 2026-10-30
+
+### Fixed
+- 💄 **手機端「回大廳」按鈕對稱雙行高度適配**：
+  - 針對手機螢幕（`<= 480px`），將左側「🏠 回大廳」按鈕高度精確調整為與右側 2x2 四個按鈕等高（`height: calc(1.85rem * 2 + 0.25rem)`）。
+  - 內部採用垂直排列（上方 🏠 圖示、下方「回大廳」文字），使左右兩側高度完美對齊、對稱協調。
+
 ## [1.4.0] - 2026-10-30
 
 ### Changed
