@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>DualBear Games - 聚會與休閒遊戲大廳</title>
+  <meta name="description" content="DualBear 跨平台聚會遊戲平台，桌機手機即開即玩，支援破冰、桌遊、趣味對決！">
+  <link rel="stylesheet" href="css/hub.css?v=1.1.0">
+</head>
+<body>
+  <!-- 頂部品牌列 -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="brand-box">
+        <span class="brand-logo">🐻🎮</span>
+        <div>
+          <h1 class="brand-title">DualBear Games</h1>
+          <p class="brand-sub">跨平台聚會與破冰遊戲大廳</p>
+        </div>
+      </div>
+      <button class="btn-help-hub" id="btnOpenHelp" aria-label="如何進行聚會遊戲">
+        <span>📖</span> 聚會玩法教學
+      </button>
+    </div>
+  </header>
+
+  <!-- 主視覺介紹區 -->
+  <section class="hero-section">
+    <h2 class="hero-title">聚會破冰，秒速破除尷尬</h2>
+    <p class="hero-desc">免下載、零延遲、桌機與手機（Android / iOS）瀏覽器點開即玩！挑選一款遊戲，立即與身邊的朋友同樂。</p>
+  </section>
+
+  <!-- 快速 3 步驟新手引導橫條 -->
+  <section class="quick-guide-banner">
+    <div class="guide-steps-grid">
+      <div class="guide-step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">一人開局開螢幕</div>
+          <div class="step-desc">主持拿手機或投放到電視/電腦大螢幕</div>
+        </div>
+      </div>
+      <div class="guide-step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">大聲宣讀話題卡</div>
+          <div class="step-desc">全場朋友表態各自的選擇與荒謬理由</div>
+        </div>
+      </div>
+      <div class="guide-step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">點擊累積即時開票</div>
+          <div class="step-desc">看哪一邊是多數派，瞬間打破尷尬冷場！</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 分類導航 -->
+  <nav class="filter-tabs-wrapper" aria-label="遊戲分類">
+    <div class="filter-tabs" id="filterTabs">
+      <!-- 由 hub.js 動態產出分類標籤 -->
+    </div>
+  </nav>
+
+  <!-- 遊戲展示網格 -->
+  <main class="games-main">
+    <div class="games-grid" id="gamesGrid">
+      <!-- 由 hub.js 動態掛載遊戲卡片 -->
+    </div>
+  </main>
+
+  <!-- 玩法教學彈窗 (Modal) -->
+  <aside class="modal-overlay" id="helpModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title">📖 聚會破冰遊戲怎麼玩？</h2>
+        <button class="btn-close-modal" id="btnCloseHelp">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-tip-box">
+          <div class="modal-tip-title">💡 核心目標：快速打破生疏、製造話題</div>
+          <div>這不是比輸贏的硬核競技，而是藉由「極端二選一」、「荒謬選擇題」讓大家互相了解彼此的價值觀、底線與笑點。</div>
+        </div>
+
+        <div>
+          <strong>🎯 推薦主持步驟：</strong>
+          <ol>
+            <li>點擊 <strong>「極限二選一」➔ 開始遊玩</strong>。</li>
+            <li>主持人唸出 A 與 B 兩個極限選項。</li>
+            <li><strong>啟動 15 秒倒數</strong>，大家現場舉手表態。</li>
+            <li>點擊卡片下方的 <strong>「投 A 一票 / 投 B 一票」</strong> 統計人數，立即看到全場勝負比例！</li>
+            <li>隨機抓幾位朋友分享「為什麼會選這個奇葩選項」，全場話題瞬間引爆！</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 頁腳 -->
+  <footer class="main-footer">
+    <p>© 2026 DualBear Games. 專案所有遊戲皆支援獨立運作與熱插拔上架。</p>
+    <p class="footer-tip">💡 提示：將任何遵循獨立結構的遊戲資料夾放入 <code>/games/</code> 並登記於 <code>games-manifest.json</code> 即可自動上架！</p>
+  </footer>
+
+  <!-- 模組化入口 -->
+  <script type="module" src="js/hub.js?v=1.1.0"></script>
+</body>
+</html>

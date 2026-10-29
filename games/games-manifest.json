@@ -1,0 +1,23 @@
+[
+  {
+    "id": "would-you-rather",
+    "name": "極限二選一 (Would You Rather)",
+    "description": "聚會破冰首選！荒謬、靈魂考驗、社交兩難二選一，全場表態引爆話題！",
+    "category": "破冰熱身",
+    "howToPlay": "玩法：唸出 A/B 選項 ➔ 全場表態 ➔ 點擊投票累積開票！",
+    "icon": "⚖️",
+    "color": "#f43f5e",
+    "tags": [
+      "破冰",
+      "聚會",
+      "二選一",
+      "話題熱身"
+    ],
+    "minPlayers": 2,
+    "maxPlayers": 20,
+    "author": "DualBear Games",
+    "version": "1.0.0",
+    "entry": "index.html",
+    "path": "games/would-you-rather/index.html"
+  }
+]

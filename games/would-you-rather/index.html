@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>極限二選一 (Would You Rather) - 聚會破冰熱身</title>
+  <meta name="description" content="聚會破冰首選！荒謬、靈魂考驗、社交兩難二選一，全場表態引爆話題！">
+  <link rel="stylesheet" href="css/style.css?v=2.6.5">
+</head>
+<body>
+  <!-- 頂部導航列 -->
+  <header class="top-nav">
+    <a href="../../index.html" class="nav-link-hub" id="backToHub">
+      <span>🏠</span> 回大廳
+    </a>
+    <h1 class="nav-title">⚖️ 極限二選一</h1>
+    <div class="nav-actions">
+      <button class="btn-icon" id="btnHelp" aria-label="遊戲說明" title="遊戲玩法">❓</button>
+      <button class="btn-icon" id="btnFilter" aria-label="篩選分類" title="分類篩選">🏷️</button>
+      <button class="btn-icon" id="btnSound" aria-label="開關聲音" title="音效開關">🔊</button>
+      <button class="btn-icon" id="btnSettings" aria-label="遊戲設定與題庫管理" title="遊戲設定與管理 (倒數/題庫/匯出入/模式)">⚙️</button>
+    </div>
+  </header>
+
+  <!-- 主遊戲區域 -->
+  <main class="game-container">
+    <!-- 頂部資訊欄 -->
+    <section class="info-bar">
+      <div class="category-badge" id="badgeCategory">輕鬆搞笑</div>
+      <div class="timer-box-wrapper">
+        <div class="timer-box" id="timerBox" title="點擊設定倒數秒數與連播題數">
+          <span>⏱️</span>
+          <span id="timerValue">15s</span>
+        </div>
+        <div class="cycle-status-badge badge-hidden" id="cycleStatusBadge" title="連續播放進度">
+          <span>🔄 剩 3 題</span>
+        </div>
+      </div>
+      <div class="counter-text" id="counterText">第 1 / 18 題</div>
+    </section>
+
+    <!-- 題目對決戰場 -->
+    <section class="battle-arena">
+      <div class="vs-divider">VS</div>
+
+      <!-- 選項 A -->
+      <article class="option-card option-a" id="cardA">
+        <div class="card-header">
+          <span class="card-tag tag-a">A 選項</span>
+          <div class="vote-tally-group">
+            <div class="vote-tally">
+              <span>🗳️</span>
+              <span id="tallyA">0</span> 票
+            </div>
+            <button class="btn-minus-vote" id="btnMinusA" title="減少 A 一票" aria-label="減少 A 一票">➖</button>
+          </div>
+        </div>
+        <div class="card-content" id="contentA">題目加載中...</div>
+        <div class="card-footer">
+          <button class="vote-btn btn-vote-a" id="btnVoteA">
+            <span>➕</span> 投 A 一票
+          </button>
+          <div class="vote-percentage" id="percentA">0%</div>
+        </div>
+        <div class="stats-bar-wrapper">
+          <div class="stats-bar-fill fill-a" id="barFillA"></div>
+        </div>
+      </article>
+
+      <!-- 選項 B -->
+      <article class="option-card option-b" id="cardB">
+        <div class="card-header">
+          <span class="card-tag tag-b">B 選項</span>
+          <div class="vote-tally-group">
+            <div class="vote-tally">
+              <span>🗳️</span>
+              <span id="tallyB">0</span> 票
+            </div>
+            <button class="btn-minus-vote" id="btnMinusB" title="減少 B 一票" aria-label="減少 B 一票">➖</button>
+          </div>
+        </div>
+        <div class="card-content" id="contentB">題目加載中...</div>
+        <div class="card-footer">
+          <button class="vote-btn btn-vote-b" id="btnVoteB">
+            <span>➕</span> 投 B 一票
+          </button>
+          <div class="vote-percentage" id="percentB">0%</div>
+        </div>
+        <div class="stats-bar-wrapper">
+          <div class="stats-bar-fill fill-b" id="barFillB"></div>
+        </div>
+      </article>
+    </section>
+
+    <!-- 底部操作控制列 -->
+    <footer class="bottom-controls">
+      <button class="btn-control" id="btnToggleTimer">⏱️ 限時倒數</button>
+      <button class="btn-control btn-reset-vote" id="btnResetVote" title="清空本題票數重新投票">🔄 重投本題</button>
+      <button class="btn-control btn-nav-prev" id="btnPrev" title="切換回上一題 (Backspace / Left Arrow)">⬅️ 上一題</button>
+      <button class="btn-control btn-primary" id="btnNext" title="換下一題 (Space / Enter / Right Arrow)">換下一題 (Space) ➡️</button>
+    </footer>
+  </main>
+
+  <!-- 遊戲玩法教學彈窗 (Modal) -->
+  <aside class="modal-overlay" id="modalHelp" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">📖 極限二選一 規則與計分說明</h2>
+      </div>
+      <div class="modal-body">
+        <div class="help-box">
+          <div class="help-step-title">🎯 基礎破冰流程（無壓力聊天）：</div>
+          <ol class="help-list">
+            <li><strong>宣讀題目</strong>：由一位朋友或主持唸出畫面上的 A 與 B 兩個極限選項。</li>
+            <li><strong>倒數表態</strong>：按下 <strong>「⏱️ 限時倒數」</strong>（15秒緊張倒數），現場每個人不准猶豫、必須二選一！</li>
+            <li><strong>累積票數</strong>：輪流點擊卡片下方的 <strong>「➕ 投 A/B 一票」</strong> 累積人數，即時開出紅藍對決百分比長條圖！</li>
+            <li><strong>互相拷問</strong>：抓出少數派或兩邊陣營，詢問大家「選這個的荒謬理由」，話題瞬間引爆！</li>
+          </ol>
+        </div>
+
+        <div class="help-box score-box">
+          <div class="help-step-title score-title">🏆 兩種聚會計分玩法（可選）：</div>
+          <ul class="help-list">
+            <li><strong>懲罰制【少數決大冒險】</strong>：每輪開票後，<strong>少數派陣營各記 1 點</strong>。累積滿 3 點者執行下方「終極懲罰」！</li>
+            <li><strong>積分制【心靈默契猜測賽】</strong>：每輪推派一位「焦點主角」，其他人猜測主角選 A 或 B。<strong>猜中者得 1 分</strong>，最高分者獲頒「榮譽獎勵」！</li>
+          </ul>
+        </div>
+
+        <div class="help-box reward-box">
+          <div class="help-step-title reward-title">🎯 本遊戲專屬懲罰與獎勵（100% 綁定二選一機制）：</div>
+          <div class="reward-columns">
+            <div class="reward-col">
+              <span class="reward-subhead">😈 輸家極限處罰：</span>
+              <ul class="reward-sublist">
+                <li><strong>現世報執行</strong>：現場模仿/執行剛才題目的荒謬情境（如去倒水走三步轉一圈）</li>
+                <li><strong>現場客製二選一</strong>：贏家為輸家出一個致命個人二選一，限時 3 秒回答理由</li>
+                <li><strong>極限辯護人</strong>：為剛才全場沒人選的那個超爛選項認真辯護 30 秒它的優點</li>
+              </ul>
+            </div>
+            <div class="reward-col">
+              <span class="reward-subhead">👑 贏家專屬特權：</span>
+              <ul class="reward-sublist">
+                <li><strong>二選一主宰權</strong>：下一題強制指定現場某位朋友「必須選 A 還是 B」</li>
+                <li><strong>原創拷問官</strong>：由贏家出一個自創的極限二選一，強迫全場所有人表態</li>
+                <li><strong>免死反彈金牌</strong>：未來輸掉時可把懲罰轉移給剛才笑最大聲的人</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="shortcut-tip">
+          💻 <strong>電腦快捷鍵</strong>：按 <code>A</code> 鍵選 A、按 <code>B</code> 鍵選 B、按 <code>空白鍵</code> 切換下一題。
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-control btn-primary" id="btnCloseHelp">我知道了，開始玩！</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 綜合遊戲設定與題庫管理中心彈窗 (Modal - 齒輪整合版) -->
+  <aside class="modal-overlay" id="modalManage" aria-hidden="true">
+    <div class="modal-content modal-manage-content">
+      <div class="modal-header">
+        <h2 class="modal-title">⚙️ 遊戲設定與題庫管理</h2>
+        <button class="btn-icon" id="btnCloseManageX">✕</button>
+      </div>
+
+      <!-- 上方五大導航分頁 (標籤獨立固定在 header 下方，不隨內容滾動) -->
+      <nav class="manage-subtabs" aria-label="設定分頁導航">
+        <button class="subtab-btn active" id="tabBtnTimer">⏱️ 倒數與人數</button>
+        <button class="subtab-btn" id="tabBtnList">📋 題庫總覽與勾選</button>
+        <button class="subtab-btn" id="tabBtnAdd">➕ 新增題目 / 分類</button>
+        <button class="subtab-btn" id="tabBtnBackup">💾 匯出 / 匯入 (TXT)</button>
+        <button class="subtab-btn" id="tabBtnMode">🎲 出題模式</button>
+      </nav>
+
+      <div class="modal-body">
+        <!-- 分頁 0: 倒數秒數與建議人數設定 (原齒輪內容) -->
+        <section class="manage-panel active" id="panelTimer">
+          <div class="settings-group">
+            <label class="settings-label">⏱️ 選擇每題倒數秒數：</label>
+            <div class="timer-presets" id="timerPresets">
+              <button class="preset-btn" data-sec="5">5秒 (極限秒選)</button>
+              <button class="preset-btn" data-sec="10">10秒 (快節奏)</button>
+              <button class="preset-btn active" data-sec="15">15秒 (黃金標準)</button>
+              <button class="preset-btn" data-sec="30">30秒 (深度辯論)</button>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <label class="settings-label">🔄 連續播放題數（自動換題與倒數）：</label>
+            <div class="timer-cycle-presets" id="timerCyclePresets">
+              <button class="cycle-preset-btn active" data-count="1">1題 (停留在該題)</button>
+              <button class="cycle-preset-btn" data-count="3">連續 3 題</button>
+              <button class="cycle-preset-btn" data-count="5">連續 5 題</button>
+              <button class="cycle-preset-btn" data-count="10">連續 10 題</button>
+              <button class="cycle-preset-btn" data-count="all">全部題目 (整組播完)</button>
+            </div>
+            <div class="cycle-hint-text" id="cycleHintText">
+              💡 當前設定：<strong>單題模式</strong>（倒數歸 0 即停留在本題，等待主持人手動切題）。
+            </div>
+          </div>
+
+          <div class="help-box settings-suggestion-box">
+            <div class="help-step-title suggestion-title">👥 當前模式建議人數與節奏：</div>
+            <div class="suggestion-content" id="suggestionContent">
+              <strong>🌟 建議人數：4 ~ 10 人</strong><br>
+              • <strong>節奏</strong>：最受歡迎的標準派對節奏，有足夠時間讓全場舉手表態，又不拖泥帶水！<br>
+              • <strong>主持技巧</strong>：倒數結束前 5 秒會響起心跳警報音，催促最後猶豫的人下決定！
+            </div>
+          </div>
+
+          <div class="shortcut-tip">
+            💡 <strong>秒數與人數對應指南</strong>：
+            <br>• <strong>5秒 (2~4人親密死黨)</strong>：不給任何思考時間，逼出最本能的真實反應！
+            <br>• <strong>10秒 (3~6人小聚會)</strong>：一人讀題，全場立刻站隊，氣氛緊張刺激！
+            <br>• <strong>15秒 (4~10人標準聚會)</strong>：黃金節奏，全場舉手兼統計票數最剛好！
+            <br>• <strong>30秒 (8~20人大型破冰/分組)</strong>：兩邊陣營各自推派代表拉票辯論！
+          </div>
+        </section>
+
+        <!-- 分頁 1: 題庫列表與預覽、勾選、編輯、刪除 -->
+        <section class="manage-panel" id="panelList">
+          <div class="panel-toolbar">
+            <div class="toolbar-left">
+              <select id="selectFilterCat" class="manage-select" aria-label="篩選分類">
+                <option value="all">全部題目 (全部分類)</option>
+              </select>
+              <span class="count-badge" id="listCountBadge">共 150 題</span>
+            </div>
+            <div class="toolbar-right">
+              <button class="btn-action-sm" id="btnSelectAll">全選當前</button>
+              <button class="btn-action-sm" id="btnClearSelection">清空勾選</button>
+              <button class="btn-action-sm btn-danger-sm" id="btnResetDefault" title="恢復官方預設 150 題">🔄 重設原廠</button>
+            </div>
+          </div>
+
+          <div class="question-list-container" id="questionListContainer">
+            <!-- 由 app.js 動態渲染題目清單 -->
+          </div>
+        </section>
+
+        <!-- 分頁 2: 新增題目與自訂分類 -->
+        <section class="manage-panel" id="panelAdd">
+          <form id="formAddQuestion" class="manage-form">
+            <div class="form-row">
+              <label class="form-label">選擇或新增分類：</label>
+              <div class="cat-input-group">
+                <select id="selectAddCat" class="manage-select">
+                  <option value="fun">輕鬆搞笑</option>
+                  <option value="deep">靈魂拷問</option>
+                  <option value="awkward">社交尷尬</option>
+                  <option value="work">職場人生</option>
+                  <option value="faith">信仰恩典 (聖經/基督教)</option>
+                  <option value="__new__">➕ 自訂新分類...</option>
+                </select>
+                <input type="text" id="inputNewCat" class="manage-input input-hidden" placeholder="輸入自訂分類名稱 (如: 愛情心動)" maxlength="15">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label class="form-label">🔴 A 選項內容：</label>
+              <textarea id="inputOptionA" class="manage-textarea" rows="2" placeholder="例：一年內只能用吸管吃所有食物" required></textarea>
+            </div>
+
+            <div class="form-row">
+              <label class="form-label">🔵 B 選項內容：</label>
+              <textarea id="inputOptionB" class="manage-textarea" rows="2" placeholder="例：一年內不管去哪裡，走三步都必須原地轉一圈" required></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-control btn-primary" id="btnSaveQuestion">💾 儲存並加入題庫</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- 分頁 3: 匯出與匯入題庫 (TXT 純文字) -->
+        <section class="manage-panel" id="panelBackup">
+          <div class="backup-grid">
+            <div class="backup-card">
+              <div class="backup-title">📤 匯出題庫 (純文字 TXT 檔)</div>
+              <p class="backup-desc">將當前所有題目（包含官方 150 題與您自訂的所有題目、分類）匯出為直覺好讀的 <code>.txt</code> 記事本文檔，方便用任何編輯器查看與修改！</p>
+              <button class="btn-control btn-primary" id="btnExportTxt">📥 下載題庫文字檔 (TXT)</button>
+            </div>
+
+            <div class="backup-card">
+              <div class="backup-title">📥 匯入題庫 (完全覆蓋)</div>
+              <p class="backup-desc">上傳 <code>.txt</code> 記事本題庫檔案（格式：<code>分類 | A選項 | B選項</code>，每行一題）。亦相容先前備份的 <code>.json</code>。</p>
+              <div class="import-actions">
+                <input type="file" id="inputFileImport" accept=".txt,.json" class="file-input-hidden">
+                <button class="btn-control" id="btnTriggerFile">📂 選擇 TXT / JSON 檔案</button>
+              </div>
+            </div>
+          </div>
+          <div class="shortcut-tip txt-format-tip">
+            📝 <strong>TXT 格式說明</strong>：一行一題，以直線符號 <code>|</code> 分隔。例如：
+            <br><code>輕鬆搞笑 | 一年內只能用吸管吃所有食物 | 走三步必須原地轉一圈</code>
+          </div>
+        </section>
+
+        <!-- 分頁 4: 出題模式設定 (題庫隨機 / 僅出勾選題目 / 循序出題) -->
+        <section class="manage-panel" id="panelMode">
+          <div class="mode-options-list">
+            <label class="mode-card">
+              <input type="radio" name="playMode" value="random" checked>
+              <div class="mode-info">
+                <div class="mode-title">🎲 題庫隨機出題 (預設推薦)</div>
+                <div class="mode-desc">在當前選定的分類中，打亂順序隨機出題，每題都是驚喜。</div>
+              </div>
+            </label>
+
+            <label class="mode-card">
+              <input type="radio" name="playMode" value="selected">
+              <div class="mode-info">
+                <div class="mode-title">🎯 僅出勾選的題目 (自選出題模式)</div>
+                <div class="mode-desc">只會在您在「題庫總覽」中打勾的題目裡出題！適合聚會前主持人挑選精選題。</div>
+              </div>
+            </label>
+
+            <label class="mode-card">
+              <input type="radio" name="playMode" value="sequential">
+              <div class="mode-info">
+                <div class="mode-title">📜 循序依序出題 (排程模式)</div>
+                <div class="mode-desc">按照題庫編號第 1 題、第 2 題由小到大依序出題，不打亂。</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="help-box mode-status-box">
+            <span id="modeStatusText">目前已勾選：150 題。出題時將從中抽選。</span>
+          </div>
+        </section>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-control btn-primary" id="btnCloseManage">完成返回遊戲</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 分類篩選彈窗 -->
+  <aside class="modal-overlay" id="modalFilter" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">🏷️ 選擇題庫分類</h2>
+      </div>
+      <div class="modal-body" id="filterModalBody">
+        <!-- 動態渲染各分類按鈕 -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn-control" id="btnCloseModal">關閉</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 引入模組化腳本 -->
+  <script type="module" src="js/app.js?v=2.6.5"></script>
+</body>
+</html>

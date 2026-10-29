@@ -1,0 +1,471 @@
+/* DualBear Games 大廳專用樣式表 */
+:root {
+  --bg-color: #0b0f19;
+  --card-bg: #151d2f;
+  --card-hover: #1e293b;
+  --text-main: #f8fafc;
+  --text-sub: #94a3b8;
+  --text-muted: #64748b;
+  --primary: #3b82f6;
+  --primary-glow: rgba(59, 130, 246, 0.25);
+  --border-color: #1e293b;
+  --border-highlight: #334155;
+  --radius-lg: 1.25rem;
+  --radius-md: 0.75rem;
+  --radius-full: 9999px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* 頂部品牌列 */
+.main-header {
+  padding: calc(0.85rem + var(--safe-top)) 1.5rem 0.85rem;
+  background-color: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-logo {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.brand-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #60a5fa, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-sub {
+  font-size: 0.75rem;
+  color: var(--text-sub);
+}
+
+.btn-help-hub {
+  background-color: #1e293b;
+  border: 1px solid var(--border-highlight);
+  color: var(--text-main);
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.btn-help-hub:hover {
+  background-color: #334155;
+  border-color: #60a5fa;
+}
+
+/* 主頁橫幅 (Hero) */
+.hero-section {
+  text-align: center;
+  padding: 1.75rem 1.25rem 1.25rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
+  color: #f8fafc;
+}
+
+.hero-desc {
+  font-size: 0.95rem;
+  color: var(--text-sub);
+  line-height: 1.5;
+}
+
+/* 快速上手引導橫條 (Quick Guide Banner) */
+.quick-guide-banner {
+  max-width: 1200px;
+  margin: 0 auto 1.5rem;
+  padding: 0 1.25rem;
+  width: 100%;
+}
+
+.guide-steps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  background-color: #111827;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .guide-steps-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+.guide-step-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.step-num {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.step-desc {
+  font-size: 0.8rem;
+  color: var(--text-sub);
+}
+
+/* 分類標籤列 */
+.filter-tabs-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.25rem 1.25rem;
+  width: 100%;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: none;
+}
+
+.filter-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-btn {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-sub);
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  border-color: var(--border-highlight);
+  color: var(--text-main);
+}
+
+.tab-btn.tab-active {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+/* 遊戲網格列表 */
+.games-main {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.25rem calc(2rem + var(--safe-bottom));
+  width: 100%;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .games-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* 遊戲卡片 */
+.game-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, border-color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-highlight);
+  background-color: var(--card-hover);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.game-card:active {
+  transform: scale(0.98);
+}
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.game-icon-box {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-md);
+  background-color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  border: 1px solid var(--border-color);
+}
+
+.badge-category {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+.game-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.game-desc {
+  font-size: 0.9rem;
+  color: var(--text-sub);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.card-how-to {
+  background-color: #0f172a;
+  border-radius: var(--radius-md);
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.how-to-icon {
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.85rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.meta-players {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.badge-play {
+  font-weight: 600;
+  color: #38bdf8;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+/* 預覽與即將推出卡片 */
+.card-coming-soon {
+  opacity: 0.65;
+  border-style: dashed;
+}
+
+.card-coming-soon:hover {
+  transform: none;
+  background-color: var(--card-bg);
+  box-shadow: none;
+  cursor: default;
+}
+
+/* 彈窗 (Modal) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-overlay.modal-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-highlight);
+  border-radius: var(--radius-lg);
+  max-width: 520px;
+  width: 100%;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.btn-close-modal {
+  background: none;
+  border: none;
+  color: var(--text-sub);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.modal-tip-box {
+  background-color: #0f172a;
+  border-left: 4px solid var(--primary);
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem var(--radius-md) var(--radius-md) 0.25rem;
+}
+
+.modal-tip-title {
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+/* 底部說明與頁腳 */
+.main-footer {
+  text-align: center;
+  padding: 1.5rem 1.25rem calc(1.5rem + var(--safe-bottom));
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.footer-tip {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: #64748b;
+}
