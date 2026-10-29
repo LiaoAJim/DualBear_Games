@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>極限二選一 (Would You Rather) - 聚會破冰熱身</title>
   <meta name="description" content="聚會破冰首選！荒謬、靈魂考驗、社交兩難二選一，全場表態引爆話題！">
-  <link rel="stylesheet" href="css/style.css?v=2.7.3">
+  <link rel="stylesheet" href="css/style.css?v=2.7.5">
 </head>
 <body>
   <!-- 頂部導航列 -->
@@ -57,13 +57,10 @@
         </div>
         <div class="card-content" id="contentA">題目加載中...</div>
         <div class="card-footer">
-          <button class="vote-btn btn-vote-a" id="btnVoteA">
-            <span>➕</span> 投 A 一票
-          </button>
+          <div class="stats-bar-wrapper">
+            <div class="stats-bar-fill fill-a" id="barFillA"></div>
+          </div>
           <div class="vote-percentage" id="percentA">0%</div>
-        </div>
-        <div class="stats-bar-wrapper">
-          <div class="stats-bar-fill fill-a" id="barFillA"></div>
         </div>
       </article>
 
@@ -81,13 +78,10 @@
         </div>
         <div class="card-content" id="contentB">題目加載中...</div>
         <div class="card-footer">
-          <button class="vote-btn btn-vote-b" id="btnVoteB">
-            <span>➕</span> 投 B 一票
-          </button>
+          <div class="stats-bar-wrapper">
+            <div class="stats-bar-fill fill-b" id="barFillB"></div>
+          </div>
           <div class="vote-percentage" id="percentB">0%</div>
-        </div>
-        <div class="stats-bar-wrapper">
-          <div class="stats-bar-fill fill-b" id="barFillB"></div>
         </div>
       </article>
     </section>
@@ -97,7 +91,7 @@
       <button class="btn-control" id="btnToggleTimer">⏱️ 限時倒數</button>
       <button class="btn-control btn-reset-vote" id="btnResetVote" title="清空本題票數重新投票">🔄 重投本題</button>
       <button class="btn-control btn-nav-prev" id="btnPrev" title="切換回上一題 (Backspace / Left Arrow)">⬅️ 上一題</button>
-      <button class="btn-control btn-primary" id="btnNext" title="換下一題 (Space / Enter / Right Arrow)">換下一題 (Space) ➡️</button>
+      <button class="btn-control btn-primary" id="btnNext" title="換下一題 (Space / Enter / Right Arrow)">下一題 ➡️</button>
     </footer>
   </main>
 
@@ -355,6 +349,6 @@
   </aside>
 
   <!-- 引入模組化腳本 -->
-  <script type="module" src="js/app.js?v=2.7.3"></script>
+  <script type="module" src="js/app.js?v=2.7.5"></script>
 </body>
 </html>

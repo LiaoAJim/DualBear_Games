@@ -2,12 +2,13 @@ import subprocess
 
 def run():
     subprocess.run(["git", "add", "."], check=True)
-    msg = """💄 style(wyr): 【手機端UI】題庫管理三按鈕滿版延伸畫面左右兩側與2x2字數對齊
+    msg = """✨ feat(wyr): 【UI精簡】卡片全域投票、占比條上移與換題按鈕精簡為「下一題」
 
-- 手機端工具列改為上下兩組排版，三按鈕佔據整行並滿版延伸至左右兩側 (width: 100%, grid 3等份)
-- 三按鈕文字工整對稱拆為上下各 2 個字（全選/當前、清空/勾選、🔄重設/原廠）
-- 齒輪彈窗頂部 5 大功能分頁支援 iOS/Android 觸控流暢橫向滑動
-- 靜態資源快取版本升級至 v=2.7.3"""
+- 移除 A、B 選項卡片內獨立投標按鈕與「👆 點擊卡片投票」提示
+- 點擊整個 A、B 選項卡片邊界即直接累加投票並開票 (保留 ➖ 按鈕防誤觸)
+- 占比長條 (stats-bar-wrapper) 直接上移至 card-footer 與百分比並列展示，釋放垂直空間
+- 底部換題按鈕文字精簡為「下一題 ➡️」
+- 靜態資源快取版本升級至 v=2.7.5"""
     
     with open("commit_temp.txt", "w", encoding="utf-8") as f:
         f.write(msg)

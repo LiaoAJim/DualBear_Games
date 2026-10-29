@@ -58,8 +58,6 @@ class WouldYouRatherGame {
       contentB: document.getElementById('contentB'),
       cardA: document.getElementById('cardA'),
       cardB: document.getElementById('cardB'),
-      btnVoteA: document.getElementById('btnVoteA'),
-      btnVoteB: document.getElementById('btnVoteB'),
       btnMinusA: document.getElementById('btnMinusA'),
       btnMinusB: document.getElementById('btnMinusB'),
       tallyA: document.getElementById('tallyA'),
@@ -185,19 +183,9 @@ class WouldYouRatherGame {
   }
 
   bindEvents() {
-    // 選項卡片點擊投票
-    this.dom.cardA.addEventListener('click', () => this.vote('A'));
-    this.dom.cardB.addEventListener('click', () => this.vote('B'));
-
-    // 票數計數器累加
-    this.dom.btnVoteA.addEventListener('click', (e) => {
-      e.stopPropagation();
-      this.addTally('A');
-    });
-    this.dom.btnVoteB.addEventListener('click', (e) => {
-      e.stopPropagation();
-      this.addTally('B');
-    });
+    // 點擊 A 或 B 選項卡片區域即直接投票與累加票數
+    this.dom.cardA.addEventListener('click', () => this.addTally('A'));
+    this.dom.cardB.addEventListener('click', () => this.addTally('B'));
 
     // 票數減少按鈕 (防按錯)
     if (this.dom.btnMinusA) {

@@ -493,62 +493,16 @@ body {
 
 .card-footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   border-top: 1px solid var(--border-color);
-  padding-top: 1rem;
+  padding-top: 0.85rem;
+  min-height: 2.2rem;
 }
 
-.vote-btn {
-  background: none;
-  border: 1px solid;
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-full);
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.btn-vote-a {
-  border-color: var(--color-a);
-  color: var(--color-a);
-}
-
-.btn-vote-a:hover {
-  background-color: var(--color-a);
-  color: #fff;
-}
-
-.btn-vote-b {
-  border-color: var(--color-b);
-  color: var(--color-b);
-}
-
-.btn-vote-b:hover {
-  background-color: var(--color-b);
-  color: #fff;
-}
-
-.vote-percentage {
-  font-size: 1.15rem;
-  font-weight: 800;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.show-stats .vote-percentage {
-  visibility: visible;
-  opacity: 1;
-}
-
-/* 統計進度條 */
+/* 統計進度條（移至 card-footer 內部，取代原投票提示） */
 .stats-bar-wrapper {
-  margin-top: 0.75rem;
+  flex: 1;
   height: 8px;
   background-color: transparent;
   border-radius: var(--radius-full);
@@ -577,6 +531,22 @@ body {
 
 .fill-b {
   background-color: var(--color-b);
+}
+
+.vote-percentage {
+  font-size: 1.15rem;
+  font-weight: 800;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  min-width: 3rem;
+  text-align: right;
+}
+
+.show-stats .vote-percentage {
+  visibility: visible;
+  opacity: 1;
 }
 
 /* 底部操作控制列 */

@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-10-30
+
+### Changed
+- 🎯 **卡片全域直覺觸控投票與占比條版面優化**：
+  - 移除 A、B 選項卡片內獨立按鈕與「👆 點擊卡片投票」輔助提示。
+  - 將占比進度長條（`stats-bar-wrapper`）直接上移至卡片底部 footer，與百分比（`%`）並列展示（進度條在左、百分比在右），大幅釋放卡片縱深空間，版面極簡俐落。
+  - 點擊整個 A、B 選項卡片區域即為該選項投一票並流暢跳動開票進度。
+- 💄 **底部操作按鈕文字精簡**：
+  - 底部換題主按鈕文字由「`換下一題 (Space) ➡️`」精簡為「`下一題 ➡️`」，手機端排版更加清爽。
+
 ## [1.3.1] - 2026-10-30
 
 ### Fixed
