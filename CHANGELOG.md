@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2026-10-30
+
+### Fixed
+- 💄 **題庫管理工具按鈕手機端整行延伸與 2x2 字數對齊**：
+  - 修正手機端「全選當前」、「清空勾選」、「🔄 重設原廠」三按鈕原先縮在左側的問題：工具列改為垂直分組，三按鈕佔據整行並滿版延伸至畫面左右兩側（`width: 100%`、`grid 3 等份`）。
+  - 按鈕文字對稱分為 2 行，每行各 2 個字（`全選 / 當前`、`清空 / 勾選`、`🔄 重設 / 原廠`），大氣飽滿好點擊。
+- 🐛 **手機端設定彈窗分頁橫向滑動支援**：
+  - 加入 iOS/Android 原生觸控橫向流暢滑動（`-webkit-overflow-scrolling: touch`）、精緻細捲軸視覺指示與手機端按鈕緊湊字級 padding，確保所有分頁按鈕隨手即可滑動切換。
+
 ## [1.3.0] - 2026-10-30
 
 ### Added

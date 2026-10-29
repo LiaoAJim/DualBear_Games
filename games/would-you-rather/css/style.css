@@ -138,6 +138,52 @@ body {
     font-size: 0.75rem;
     white-space: nowrap;
   }
+
+  /* 彈窗在手機端的內距與分頁標籤緊湊排版 */
+  .modal-content {
+    padding: 1rem 0.75rem;
+  }
+
+  .manage-subtabs {
+    gap: 0.35rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .subtab-btn {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.82rem;
+  }
+
+  /* 題庫管理工具列在手機端緊湊均勻排列，寬度橫跨整行 */
+  .panel-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+
+  .toolbar-left {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .toolbar-right {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .btn-action-sm {
+    width: 100%;
+    padding: 0.5rem 0.2rem;
+    text-align: center;
+    line-height: 1.25;
+    font-size: 0.82rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .btn-icon {
@@ -851,9 +897,19 @@ body {
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.6rem;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   flex-shrink: 0;
   scrollbar-width: thin;
   scrollbar-color: #334155 transparent;
+}
+
+.manage-subtabs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.manage-subtabs::-webkit-scrollbar-thumb {
+  background-color: #334155;
+  border-radius: 4px;
 }
 
 .subtab-btn {
