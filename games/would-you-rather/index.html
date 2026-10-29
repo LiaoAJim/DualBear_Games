@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>極限二選一 (Would You Rather) - 聚會破冰熱身</title>
   <meta name="description" content="聚會破冰首選！荒謬、靈魂考驗、社交兩難二選一，全場表態引爆話題！">
-  <link rel="stylesheet" href="css/style.css?v=2.6.6">
+  <link rel="stylesheet" href="css/style.css?v=2.7.0">
 </head>
 <body>
   <!-- 頂部導航列 -->
@@ -195,7 +195,7 @@
               <button class="cycle-preset-btn" data-count="3">連續 3 題</button>
               <button class="cycle-preset-btn" data-count="5">連續 5 題</button>
               <button class="cycle-preset-btn" data-count="10">連續 10 題</button>
-              <button class="cycle-preset-btn" data-count="all">全部題目 (整組播完)</button>
+              <button class="cycle-preset-btn" data-count="all">全部題目</button>
             </div>
             <div class="cycle-hint-text" id="cycleHintText">
               💡 當前設定：<strong>單題模式</strong>（倒數歸 0 即停留在本題，等待主持人手動切題）。
@@ -227,12 +227,12 @@
               <select id="selectFilterCat" class="manage-select" aria-label="篩選分類">
                 <option value="all">全部題目 (全部分類)</option>
               </select>
-              <span class="count-badge" id="listCountBadge">共 150 題</span>
+              <span class="count-badge" id="listCountBadge">共 250 題</span>
             </div>
             <div class="toolbar-right">
               <button class="btn-action-sm" id="btnSelectAll">全選當前</button>
               <button class="btn-action-sm" id="btnClearSelection">清空勾選</button>
-              <button class="btn-action-sm btn-danger-sm" id="btnResetDefault" title="恢復官方預設 150 題">🔄 重設原廠</button>
+              <button class="btn-action-sm btn-danger-sm" id="btnResetDefault" title="恢復官方預設 250 題">🔄 重設原廠</button>
             </div>
           </div>
 
@@ -280,7 +280,7 @@
           <div class="backup-grid">
             <div class="backup-card">
               <div class="backup-title">📤 匯出題庫 (純文字 TXT 檔)</div>
-              <p class="backup-desc">將當前所有題目（包含官方 150 題與您自訂的所有題目、分類）匯出為直覺好讀的 <code>.txt</code> 記事本文檔，方便用任何編輯器查看與修改！</p>
+              <p class="backup-desc">將當前所有題目（包含官方 250 題與您自訂的所有題目、分類）匯出為直覺好讀的 <code>.txt</code> 記事本文檔，方便用任何編輯器查看與修改！</p>
               <button class="btn-control btn-primary" id="btnExportTxt">📥 下載題庫文字檔 (TXT)</button>
             </div>
 
@@ -328,7 +328,7 @@
           </div>
 
           <div class="help-box mode-status-box">
-            <span id="modeStatusText">目前已勾選：150 題。出題時將從中抽選。</span>
+            <span id="modeStatusText">目前已勾選：250 題。出題時將從中抽選。</span>
           </div>
         </section>
       </div>
@@ -355,6 +355,6 @@
   </aside>
 
   <!-- 引入模組化腳本 -->
-  <script type="module" src="js/app.js?v=2.6.6"></script>
+  <script type="module" src="js/app.js?v=2.7.0"></script>
 </body>
 </html>

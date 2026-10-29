@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-10-30
+
+### Added
+- ✨ **官方題庫大幅擴充至 250 題 (各分類各 50 題)**：
+  - 五大分類全數擴充至 50 題且保證 100% 不重複：
+    - 「😂 輕鬆搞笑」：50 題（#1 ~ #50）
+    - 「🤔 靈魂拷問」：50 題（#51 ~ #100）
+    - 「😳 社交尷尬」：50 題（#101 ~ #150）
+    - 「💼 職場人生」：50 題（#151 ~ #200）
+    - 「✝️ 信仰恩典」：50 題（#201 ~ #250）
+  - 本地儲存金鑰升級（v4），確保瀏覽器打開直接讀取全新 250 題完整題庫。
+- 💄 **行動端響應式排版優化 (RWD)**：
+  - 頂部導航按鈕在窄螢幕（手機寬度 <= 480px）時自動重整為 2x2 方陣排列（每行 2 個按鈕），徹底解決按鈕擁擠與互相遮擋問題。
+  - 資訊列與連播徽章在手機端維持緊湊防折行設計。
+
 ## [1.2.0] - 2026-10-29
 
 ### Added

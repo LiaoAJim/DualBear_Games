@@ -21,10 +21,10 @@ const TIMER_SUGGESTIONS = {
   }
 };
 
-const STORAGE_KEY_QUESTIONS = 'dualbear_wyr_questions_v3';
-const STORAGE_KEY_SELECTED = 'dualbear_wyr_selected_ids_v3';
-const STORAGE_KEY_MODE = 'dualbear_wyr_play_mode_v3';
-const STORAGE_KEY_CYCLE_COUNT = 'dualbear_wyr_cycle_count_v3';
+const STORAGE_KEY_QUESTIONS = 'dualbear_wyr_questions_v4';
+const STORAGE_KEY_SELECTED = 'dualbear_wyr_selected_ids_v4';
+const STORAGE_KEY_MODE = 'dualbear_wyr_play_mode_v4';
+const STORAGE_KEY_CYCLE_COUNT = 'dualbear_wyr_cycle_count_v4';
 
 class WouldYouRatherGame {
   constructor() {
@@ -442,16 +442,16 @@ class WouldYouRatherGame {
       }
     });
 
-    // 恢復原廠 150 題
+    // 恢復原廠 250 題
     this.dom.btnResetDefault.addEventListener('click', () => {
-      if (confirm("確定要重設為官方預設的 150 道題目 (含聖經信仰分類) 嗎？所有自訂題目將被覆蓋！")) {
+      if (confirm("確定要重設為官方預設的 250 道題目 (含五大分類各 50 題) 嗎？所有自訂題目將被覆蓋！")) {
         this.questions = JSON.parse(JSON.stringify(DEFAULT_QUESTIONS));
         this.selectedIds = new Set(this.questions.map(q => q.id));
         this.saveQuestions();
         this.saveSelectedIds();
         this.renderManageList();
         this.updateCatOptions();
-        alert("已成功恢復 150 道預設題庫！");
+        alert("已成功恢復 250 道預設題庫！");
       }
     });
 
@@ -713,7 +713,7 @@ class WouldYouRatherGame {
       deep: { icon: '🧠', sub: '人生價值觀' },
       awkward: { icon: '😳', sub: '社死極限考驗' },
       work: { icon: '💼', sub: '打工人辛酸淚' },
-      faith: { icon: '✝️', sub: '聖經與基督徒生活' }
+      faith: { icon: '✝️', sub: '基督徒生活' }
     };
 
     catMap.forEach((name, cat) => {
@@ -791,7 +791,7 @@ class WouldYouRatherGame {
       const isChecked = this.selectedIds.has(q.id);
       const card = document.createElement('div');
       card.className = 'q-item-card';
-      // 若有篩選單一分類，顯示該分類下的序號 #1 ~ #30；若為全部題目則顯示全域 #1 ~ #150
+      // 若有篩選單一分類，顯示該分類下的序號 #1 ~ #50；若為全部題目則顯示全域 #1 ~ #250
       const displayIndex = index + 1;
       card.innerHTML = `
         <input type="checkbox" class="q-item-checkbox" data-id="${q.id}" ${isChecked ? 'checked' : ''} title="勾選納入出題">

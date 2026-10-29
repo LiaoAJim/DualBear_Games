@@ -200,8 +200,10 @@ body {
 
 .timer-box-wrapper {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 0.25rem;
 }
 
 .cycle-status-badge {
@@ -818,31 +820,6 @@ body {
   font-size: 0.88rem;
   color: #cbd5e1;
   line-height: 1.6;
-}
-
-.timer-box-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.cycle-status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 0.2rem 0.55rem;
-  border-radius: var(--radius-full);
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.3));
-  border: 1px solid rgba(16, 185, 129, 0.5);
-  color: #34d399;
-  animation: badgeGlow 1.5s infinite alternate ease-in-out;
-}
-
-@keyframes badgeGlow {
-  0% { box-shadow: 0 0 4px rgba(16, 185, 129, 0.2); }
-  100% { box-shadow: 0 0 10px rgba(16, 185, 129, 0.5); }
 }
 
 .badge-hidden {
