@@ -2,12 +2,16 @@ import subprocess
 
 def run():
     subprocess.run(["git", "add", "."], check=True)
-    msg = """✨ feat(wyr): 【體驗優化】全設定持久化記憶與修正「出題模式」按鈕被切字
+    msg = """💄 style(wyr): 【視覺優化】移除頂部連播題數徽章之外框線
 
-- 補齊全域設定 LocalStorage 記憶（倒數秒數、音效靜音、題庫分類、連播題數、出題模式）
-- 頁面重新整理或重開瀏覽器自動保持所有偏好設定
-- 擴增彈窗寬度至 860px 並優化標籤間距，徹底修復「🎲 出題模式」按鈕文字被裁切問題
-- 靜態資源快取版本升級至 v=2.8.2"""
+- 移除「🔄 連播 3 題」徽章 (cycle-status-badge) 外邊框線 (border: none)
+- 保留微柔半透明底色與動態光暈，介面更加輕盈乾淨
+- 靜態資源快取版本升級至 v=2.8.3
+
+[AI-HANDOFF]
+- Status: PASS
+- Next-Step: 依計畫啟動大廳第二款破冰聚會遊戲規劃
+- Blockers: None"""
     
     with open("commit_temp.txt", "w", encoding="utf-8") as f:
         f.write(msg)

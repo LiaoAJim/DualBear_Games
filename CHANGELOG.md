@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.3] - 2026-10-30
+
+### Fixed
+- 💄 **連播徽章視覺優化**：
+  - 移除「🔄 連播 3 題」徽章的外邊框線（`border: none`），保留柔和半透明綠色背景與微光暈動效，讓頂部資訊列更顯極簡、無邊界且自然乾淨。
+
 ## [1.5.2] - 2026-10-30
 
 ### Fixed
