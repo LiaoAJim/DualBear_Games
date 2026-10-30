@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.1] - 2026-10-30
+
+### Changed
+- 💄 **引導專區標題文字優化**：
+  - 將「📖 遊戲玩法說明」彈窗中的「✝️ 小組長引導專區」標籤調整為更具包容性與適用於各類聚會的「✝️ 主持人引導專區」。
+
 ## [1.5.0] - 2026-10-30
 
 ### Added
