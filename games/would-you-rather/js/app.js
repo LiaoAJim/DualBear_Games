@@ -313,6 +313,37 @@ class WouldYouRatherGame {
       });
     }
 
+    // 基督教小組結語輪播切換 (左右按鈕切換 4 篇結語)
+    const btnClosingPrev = document.getElementById('btnClosingPrev');
+    const btnClosingNext = document.getElementById('btnClosingNext');
+    const closingIndicator = document.getElementById('closingIndicator');
+    const closingSlides = document.querySelectorAll('.closing-slide');
+    let currentClosingIdx = 0;
+
+    const updateClosingSlide = (newIdx) => {
+      if (!closingSlides.length) return;
+      closingSlides[currentClosingIdx].classList.remove('active');
+      currentClosingIdx = (newIdx + closingSlides.length) % closingSlides.length;
+      closingSlides[currentClosingIdx].classList.add('active');
+      if (closingIndicator) {
+        closingIndicator.textContent = `${currentClosingIdx + 1} / ${closingSlides.length}`;
+      }
+    };
+
+    if (btnClosingPrev) {
+      btnClosingPrev.addEventListener('click', () => {
+        sound.playTap();
+        updateClosingSlide(currentClosingIdx - 1);
+      });
+    }
+
+    if (btnClosingNext) {
+      btnClosingNext.addEventListener('click', () => {
+        sound.playTap();
+        updateClosingSlide(currentClosingIdx + 1);
+      });
+    }
+
     // 分類篩選彈窗
     this.dom.btnFilter.addEventListener('click', () => {
       sound.playTap();

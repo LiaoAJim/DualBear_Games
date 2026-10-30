@@ -671,6 +671,101 @@ body {
   background-color: rgba(16, 185, 129, 0.05);
 }
 
+/* 基督教小組結語輪播卡片 */
+.help-box.closing-box {
+  border-left-color: #a855f7;
+  background-color: rgba(168, 85, 247, 0.06);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-left-width: 4px;
+}
+
+.closing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px dashed rgba(168, 85, 247, 0.25);
+  padding-bottom: 0.45rem;
+}
+
+.closing-badge {
+  font-weight: 800;
+  color: #c084fc;
+  font-size: 0.95rem;
+}
+
+.closing-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.closing-nav-btn {
+  background-color: #1e1b4b;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  color: #e9d5ff;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.closing-nav-btn:hover {
+  background-color: #3b0764;
+  color: #fff;
+  border-color: #a855f7;
+}
+
+.closing-nav-btn:active {
+  transform: scale(0.92);
+}
+
+.closing-indicator {
+  font-size: 0.8rem;
+  color: #d8b4fe;
+  font-weight: 700;
+  min-width: 2.5rem;
+  text-align: center;
+}
+
+.closing-card-viewport {
+  position: relative;
+  min-height: 7.5rem;
+}
+
+.closing-slide {
+  display: none;
+  animation: fadeIn 0.25s ease;
+}
+
+.closing-slide.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.closing-title {
+  font-weight: 700;
+  color: #f3e8ff;
+  font-size: 0.92rem;
+  margin-bottom: 0.4rem;
+}
+
+.closing-content {
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0;
+}
+
 .help-step-title {
   font-weight: 700;
   color: var(--color-gold);

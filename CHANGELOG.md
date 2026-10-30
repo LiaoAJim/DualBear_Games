@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-10-30
+
+### Added
+- ✨ **遊戲說明彈窗新增「✝️ 小組長引導專區：破冰結語輪播卡片」**：
+  - 將 4 種基督徒聚會破冰結語收納入「📖 遊戲玩法說明」彈窗中：
+    1. 🕊️ 【恩典與接納篇】（適合輕鬆溫馨、新朋友多）
+    2. 🧩 【肢體多元與合一篇】（適合大家選 A/B 各半時）
+    3. 💡 【智慧與跟隨篇】（適合深度思考與價值觀探討）
+    4. 🙏 【極簡祝福短禱篇】（適合想快速收尾直接禱告查經）
+  - 設計為單張專屬卡片展示，提供「◀」與「▶」左右按鈕及頁數指示器（如 `1 / 4`），隨點隨切換、視覺乾淨不佔版面！
+
 ## [1.4.3] - 2026-10-30
 
 ### Fixed

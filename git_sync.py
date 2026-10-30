@@ -2,11 +2,12 @@ import subprocess
 
 def run():
     subprocess.run(["git", "add", "."], check=True)
-    msg = """💄 style(wyr): 【排版優化】題目卡片內垂直置中且多行文字靠左齊頭
+    msg = """✨ feat(wyr): 【小組長專區】遊戲說明彈窗新增基督教破冰結語輪播卡片
 
-- 題目容器 (.card-content) 改為垂直置中 (align-items: center)
-- 文字多行時保持靠左對齊 (text-align: left / justify-content: flex-start)，符合自然閱讀習慣
-- 靜態資源快取版本升級至 v=2.7.9"""
+- 在「📖 遊戲玩法說明」彈窗底部新增「✝️ 小組長引導專區」
+- 收錄 4 款基督徒聚會破冰結語（恩典接納篇、肢體多元篇、人生智慧篇、祝福短禱篇）
+- 單張卡片極簡展示，提供「◀」與「▶」左右按鈕循環切換與頁數指示 (1/4)
+- 靜態資源快取版本升級至 v=2.8.0"""
     
     with open("commit_temp.txt", "w", encoding="utf-8") as f:
         f.write(msg)

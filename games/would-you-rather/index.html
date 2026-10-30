@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>極限二選一 (Would You Rather) - 聚會破冰熱身</title>
   <meta name="description" content="聚會破冰首選！荒謬、靈魂考驗、社交兩難二選一，全場表態引爆話題！">
-  <link rel="stylesheet" href="css/style.css?v=2.7.9">
+  <link rel="stylesheet" href="css/style.css?v=2.8.0">
 </head>
 <body>
   <!-- 頂部導航列 -->
@@ -135,6 +135,49 @@
 
         <div class="shortcut-tip">
           💻 <strong>電腦快捷鍵</strong>：按 <code>A</code> 鍵選 A、按 <code>B</code> 鍵選 B、按 <code>空白鍵</code> 切換下一題。
+        </div>
+
+        <!-- 基督教小組破冰結語輪播卡片 (單張展示，左右按鈕切換) -->
+        <div class="help-box closing-box">
+          <div class="closing-header">
+            <span class="closing-badge">✝️ 小組長引導專區</span>
+            <div class="closing-nav-controls">
+              <button class="closing-nav-btn" id="btnClosingPrev" aria-label="上一篇結語" title="上一篇結語">◀</button>
+              <span class="closing-indicator" id="closingIndicator">1 / 4</span>
+              <button class="closing-nav-btn" id="btnClosingNext" aria-label="下一篇結語" title="下一篇結語">▶</button>
+            </div>
+          </div>
+          <div class="closing-card-viewport">
+            <div class="closing-slide active" data-index="0">
+              <div class="closing-title">🕊️ 【恩典與接納篇】（適合輕鬆溫馨、新朋友多）</div>
+              <p class="closing-content">
+                「剛才大家在二選一裡做了很多掙扎和有趣的選擇！但其實在真實的基督信仰裡，上帝從來不給我們『非黑即白』的苛刻條件，更不是用極端情境來考驗我們。<br>
+                聖經告訴我們：<strong>『主的恩典是夠我們用的』</strong>。無論我們現實中面臨什麼樣的兩難或軟弱，神都接納最真實的我們，並在每條路上為我們預備出路。今天讓我們帶著這份輕鬆與平安，一起進入小組分享！」
+              </p>
+            </div>
+            <div class="closing-slide" data-index="1">
+              <div class="closing-title">🧩 【肢體多元與合一篇】（適合大家選 A/B 各半時）</div>
+              <p class="closing-content">
+                「今天看到大家選 A 或選 B，各自都有非常精彩又有創意的理由！<br>
+                這正像聖經哥林多前書說的：<strong>『我們身子是一個，卻有許多肢體，肢體雖多，仍是一個身子。』</strong><br>
+                上帝創造我們每個人都有獨特的個性、偏好與恩賜。小組最寶貴的不是每個人都選一樣的答案，而是在彼此的不同中看見上帝豐富的創造，並在愛裡彼此包容與欣賞！」
+              </p>
+            </div>
+            <div class="closing-slide" data-index="2">
+              <div class="closing-title">💡 【智慧與跟隨篇】（適合深度思考與價值觀探討）</div>
+              <p class="closing-content">
+                「二選一的遊戲很刺激，因為人生往往也是由一個又一個的選擇組成的——工作、關係、金錢與價值觀。<br>
+                詩篇 119 篇說：<strong>『祢的話是我腳前的燈，是我路上的光。』</strong> 遊戲中的兩難只要笑一笑就過去了，但面對生活中的大大小小選擇時，感謝神給我們聖經與同行的屬靈夥伴，讓我們不憑自己的血氣，而是靠著禱告與聖靈的帶領，走在蒙福的道路上！」
+              </p>
+            </div>
+            <div class="closing-slide" data-index="3">
+              <div class="closing-title">🙏 【極簡祝福短禱篇】（適合想快速收尾直接禱告查經）</div>
+              <p class="closing-content">
+                「感謝神透過剛才的破冰讓我們放鬆心情、開懷大笑！<br>
+                禱告把今天接下來的時間交在神手中，求聖靈親自運行在我們當中，敞開我們的心，讓每一位弟兄姊妹都能在今天的分享中得著力量、安慰與滿滿的恩典。奉耶穌基督的名禱告，阿們！」
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -340,6 +383,6 @@
   </aside>
 
   <!-- 引入模組化腳本 -->
-  <script type="module" src="js/app.js?v=2.7.9"></script>
+  <script type="module" src="js/app.js?v=2.8.0"></script>
 </body>
 </html>
