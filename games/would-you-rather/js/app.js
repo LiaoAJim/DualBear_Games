@@ -25,6 +25,8 @@ const STORAGE_KEY_QUESTIONS = 'dualbear_wyr_questions_v4';
 const STORAGE_KEY_SELECTED = 'dualbear_wyr_selected_ids_v4';
 const STORAGE_KEY_MODE = 'dualbear_wyr_play_mode_v4';
 const STORAGE_KEY_CYCLE_COUNT = 'dualbear_wyr_cycle_count_v4';
+const STORAGE_KEY_TIMER_SEC = 'dualbear_wyr_timer_sec_v4';
+const STORAGE_KEY_CATEGORY = 'dualbear_wyr_category_v4';
 
 class WouldYouRatherGame {
   constructor() {
@@ -33,16 +35,18 @@ class WouldYouRatherGame {
     this.playMode = localStorage.getItem(STORAGE_KEY_MODE) || 'random'; // 'random' | 'selected' | 'sequential'
     this.cycleCountSetting = localStorage.getItem(STORAGE_KEY_CYCLE_COUNT) || '1'; // '1' | '3' | '5' | '10' | 'all'
     
-    this.currentCategory = 'all';
+    // 記憶上次選取的分類（預設 'all'）
+    this.currentCategory = localStorage.getItem(STORAGE_KEY_CATEGORY) || 'all';
     this.currentIndex = 0;
     this.activeQuestionPool = [];
     this.selectedChoice = null; // 'A' or 'B'
     this.tallyA = 0;
     this.tallyB = 0;
     
-    // 計時器設定（預設 15 秒）
-    this.defaultTimerDuration = 15;
-    this.timerSeconds = 15;
+    // 計時器秒數設定（記憶上次設定，預設 15 秒）
+    const savedSec = parseInt(localStorage.getItem(STORAGE_KEY_TIMER_SEC), 10);
+    this.defaultTimerDuration = (!isNaN(savedSec) && savedSec > 0) ? savedSec : 15;
+    this.timerSeconds = this.defaultTimerDuration;
     this.timerInterval = null;
     this.isTimerRunning = false;
     this.cyclePlayedCount = 0; // 記錄本次連續已播題數
@@ -177,6 +181,11 @@ class WouldYouRatherGame {
     this.rebuildQuestionPool();
     this.bindEvents();
     this.initManagePanels();
+    this.setTimerDuration(this.defaultTimerDuration);
+    this.setCycleCount(this.cycleCountSetting);
+    if (this.dom.btnSound) {
+      this.dom.btnSound.textContent = sound.isMuted ? '🔇' : '🔊';
+    }
     this.renderQuestion();
   }
 
@@ -717,6 +726,9 @@ class WouldYouRatherGame {
     allBtn.addEventListener('click', () => {
       sound.playTap();
       this.currentCategory = 'all';
+      try {
+        localStorage.setItem(STORAGE_KEY_CATEGORY, 'all');
+      } catch (e) {}
       this.dom.modalFilter.classList.remove('modal-active');
       this.rebuildQuestionPool();
       this.currentIndex = 0;
@@ -746,6 +758,9 @@ class WouldYouRatherGame {
       btn.addEventListener('click', () => {
         sound.playTap();
         this.currentCategory = cat;
+        try {
+          localStorage.setItem(STORAGE_KEY_CATEGORY, cat);
+        } catch (e) {}
         this.dom.modalFilter.classList.remove('modal-active');
         this.rebuildQuestionPool();
         this.currentIndex = 0;
@@ -1089,6 +1104,9 @@ class WouldYouRatherGame {
 
   setTimerDuration(seconds) {
     this.defaultTimerDuration = seconds;
+    try {
+      localStorage.setItem(STORAGE_KEY_TIMER_SEC, seconds);
+    } catch (e) {}
     this.dom.timerPresets.forEach(b => {
       if (parseInt(b.getAttribute('data-sec'), 10) === seconds) {
         b.classList.add('active');

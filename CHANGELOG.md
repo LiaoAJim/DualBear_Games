@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.2] - 2026-10-30
+
+### Fixed
+- 💾 **全域使用者設定持久化記憶 (LocalStorage)**：
+  - 倒數秒數設定（`5s / 10s / 15s / 30s`）自動儲存至 LocalStorage，重整後不再被重設。
+  - 音效靜音狀態（`🔊 / 🔇`）持久化記憶。
+  - 當前選定的題庫分類（`fun / deep / awkward / work / faith / all`）持久化記憶。
+  - 確保連播題數設定（`1 / 3 / 5 / 10 / all`）與出題模式（`random / selected / sequential`）在重載時同步初始化並即時反應在 UI 狀態。
+- 💄 **修正彈窗「出題模式」按鈕文字被裁切**：
+  - 將 `.modal-manage-content` 寬度微調至 `860px`，縮減分頁按鈕間距（`gap: 0.35rem`）與 padding，使「🎲 出題模式」5 個分頁按鈕在桌機彈窗內完全完整展示，絕不再被邊界擠壓切字。
+
 ## [1.5.1] - 2026-10-30
 
 ### Changed

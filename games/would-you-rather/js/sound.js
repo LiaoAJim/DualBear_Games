@@ -4,7 +4,7 @@
 class SoundFx {
   constructor() {
     this.ctx = null;
-    this.isMuted = false;
+    this.isMuted = localStorage.getItem('dualbear_wyr_sound_muted_v4') === 'true';
   }
 
   // 延遲初始化或手勢喚醒
@@ -22,6 +22,9 @@ class SoundFx {
 
   toggleMute() {
     this.isMuted = !this.isMuted;
+    try {
+      localStorage.setItem('dualbear_wyr_sound_muted_v4', this.isMuted ? 'true' : 'false');
+    } catch (e) {}
     return this.isMuted;
   }
 
