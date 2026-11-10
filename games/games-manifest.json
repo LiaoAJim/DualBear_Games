@@ -19,5 +19,27 @@
     "version": "1.0.0",
     "entry": "index.html",
     "path": "games/would-you-rather/index.html"
+  },
+  {
+    "id": "who-is-the-undercover",
+    "name": "誰是臥底 (Who is the Undercover)",
+    "description": "經典心機破冰遊戲！平民、臥底與白板的演技與邏輯大對決，一台手機輪流看詞即可開玩！",
+    "category": "心機推演",
+    "howToPlay": "玩法：手機輪流傳遞看詞 ➔ 一人一句發言 ➔ 投票抓臥底！",
+    "icon": "🕵️‍♂️",
+    "color": "#eab308",
+    "tags": [
+      "破冰",
+      "心機",
+      "推理",
+      "派對",
+      "傳機模式"
+    ],
+    "minPlayers": 4,
+    "maxPlayers": 16,
+    "author": "DualBear Games",
+    "version": "1.0.0",
+    "entry": "index.html",
+    "path": "games/who-is-the-undercover/index.html"
   }
 ]

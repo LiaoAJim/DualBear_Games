@@ -35,19 +35,19 @@ const FALLBACK_GAMES = [
     isReady: false
   },
   {
-    id: "undercover",
-    name: "誰是臥底 (Undercover)",
-    description: "單機傳遞發牌，用一句話描述詞語，抓出暗藏在群體中的臥底！",
+    id: "who-is-the-undercover",
+    name: "誰是臥底 (Who is the Undercover)",
+    description: "經典心機破冰遊戲！平民、臥底與白板的演技與邏輯大對決，一台手機輪流看詞即可開玩！",
     category: "心機推演",
     howToPlay: "玩法：手機輪流傳遞看詞 ➔ 一人一句發言 ➔ 投票抓臥底！",
-    icon: "🕵️",
+    icon: "🕵️‍♂️",
     color: "#eab308",
-    tags: ["心機", "推理", "詞語"],
+    tags: ["破冰", "心機", "推理", "派對", "傳機模式"],
     minPlayers: 4,
-    maxPlayers: 10,
-    version: "規劃中",
-    path: "#",
-    isReady: false
+    maxPlayers: 16,
+    version: "1.0.0",
+    path: "games/who-is-the-undercover/index.html",
+    isReady: true
   },
   {
     id: "two-truths-one-lie",

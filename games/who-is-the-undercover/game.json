@@ -1,0 +1,15 @@
+{
+  "id": "who-is-the-undercover",
+  "name": "誰是臥底",
+  "description": "經典心機破冰遊戲！平民、臥底與白板的演技與邏輯大對決，一台手機輪流看詞即可開玩！",
+  "category": "icebreaker",
+  "categoryName": "聚會破冰",
+  "icon": "🕵️‍♂️",
+  "cover": "cover.jpg",
+  "entry": "index.html",
+  "version": "1.0.0",
+  "minPlayers": 4,
+  "maxPlayers": 16,
+  "author": "DualBear Games",
+  "tags": ["破冰", "心機", "推理", "派對", "傳機模式"]
+}
