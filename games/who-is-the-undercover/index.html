@@ -49,7 +49,7 @@
         <div class="config-row">
           <div class="config-label-group">
             <span class="config-label">🕵️‍♂️ 臥底人數</span>
-            <span class="config-hint">詞條與平民相近但不同</span>
+            <span class="config-hint">詞條與平民相近但不同（臥底人數＋白板人數須小於平民人數）</span>
           </div>
           <div class="stepper-control">
             <button class="btn-stepper" id="btnMinusUndercover">－</button>
@@ -62,7 +62,7 @@
         <div class="config-row">
           <div class="config-label-group">
             <span class="config-label">🈳 白板人數 (無字天書)</span>
-            <span class="config-hint">手上一片空白全靠演技跟風 (設為 0 即不加入)</span>
+            <span class="config-hint">手上一片空白全靠演技跟風（設為 0 不加入；加至等於總人數可開啟「全場飆演技奧斯卡局」）</span>
           </div>
           <div class="stepper-control">
             <button class="btn-stepper" id="btnMinusBlank">－</button>
@@ -288,6 +288,13 @@
                   <td>1</td>
                   <td>燒腦推理大局</td>
                 </tr>
+                <tr>
+                  <td>任意人數</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>全員</td>
+                  <td>🎭 <strong>全場飆演技奧斯卡局</strong>：全場通通無字！每個人都在演！</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -299,7 +306,7 @@
             <li><strong>傳機看詞</strong>：所有人輪流拿手機長按看詞，記住後交給下一位（若是白板請發揮演技！）。</li>
             <li><strong>輪流描述</strong>：由系統隨機指派的首位玩家開始，順時針每人用一句話描述自己的詞（不可直接說出字面關鍵字）。</li>
             <li><strong>投票處決與決戰到底</strong>：全員描述後，大家倒數同時指認嫌疑人，票數最高者淘汰出局！遊戲不會因人數持平而提早中斷，會持續進行直到「所有臥底被抓出」或「平民僅剩 1 人」水落石出！</li>
-            <li><strong>白板反殺</strong>：若白板出局且開啟反殺，猜對平民詞即可逆轉一人獨贏！</li>
+            <li><strong>白板反殺</strong>：若白板被投票處決，在出局瞬間猜對平民詞即可絕地反殺一人獨贏！</li>
           </ol>
         </div>
 
@@ -545,7 +552,7 @@
   </aside>
 
   <!-- 引入模組化腳本 -->
-  <script type="module" src="js/app.js?v=1.3.2"></script>
+  <script type="module" src="js/app.js?v=1.3.5"></script>
 </body>
 </html>
 

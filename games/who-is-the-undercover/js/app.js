@@ -553,9 +553,9 @@ class UndercoverGame {
     });
   }
 
-  // 取得當前總人數下，非全員白板時所允許的最大非平民總數（確保開局平民至少有 2 人，可決戰到底）
+  // 取得當前總人數下，非全員白板時所允許的最大非平民總數（強制保證：平民人數 > 臥底 + 白板人數）
   getMaxNonCivilians() {
-    return Math.max(1, this.totalPlayers - 2);
+    return Math.floor((this.totalPlayers - 1) / 2);
   }
 
   // 自動平衡人數配置（預設確保平民人數 > 臥底 + 白板人數，避免開局邏輯死局）
