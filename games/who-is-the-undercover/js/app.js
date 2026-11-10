@@ -443,19 +443,17 @@ class UndercoverGame {
     this.btnAddUndercover.addEventListener('click', () => {
       soundFx.playTap();
       const maxNonCiv = this.getMaxNonCivilians();
-      // 若增加臥底不會導致 平民 <= 臥底 + 白板
       if (this.undercoverCount + 1 + this.blankCount <= maxNonCiv) {
         this.undercoverCount++;
         this.updateConfigUI();
       } else if (this.undercoverCount + 1 <= maxNonCiv) {
-        // 若白板有剩餘，可微調白板挪出名額
         this.undercoverCount++;
         this.blankCount = maxNonCiv - this.undercoverCount;
         this.updateConfigUI();
       }
     });
 
-    // 白板人數增減（支援一般限制平民>非平民，亦支援一鍵拉至上限觸發全員白板奧斯卡局）
+    // 白板人數增減（支援一般自由配置，亦支援一鍵加至上限觸發全員白板奧斯卡局）
     this.btnMinusBlank.addEventListener('click', () => {
       soundFx.playTap();
       if (this.blankCount > 0) {
@@ -555,10 +553,9 @@ class UndercoverGame {
     });
   }
 
-  // 取得當前總人數下，非全員白板時所允許的最大非平民總數（確保平民 > 臥底 + 白板）
+  // 取得當前總人數下，非全員白板時所允許的最大非平民總數（確保開局平民至少有 2 人，可決戰到底）
   getMaxNonCivilians() {
-    // 平民人數必須大於臥底+白板： (totalPlayers - nonCivilians) > nonCivilians => 2 * nonCivilians < totalPlayers
-    return Math.floor((this.totalPlayers - 1) / 2);
+    return Math.max(1, this.totalPlayers - 2);
   }
 
   // 自動平衡人數配置（預設確保平民人數 > 臥底 + 白板人數，避免開局邏輯死局）
@@ -900,12 +897,13 @@ class UndercoverGame {
     this.players = roles.map((role, idx) => {
       let word = this.civilianWord;
       if (role === 'undercover') word = this.undercoverWord;
-      if (role === 'blank') word = '【 無字天書 】';
+      if (role === 'blank') word = '無字天書';
       return {
         id: idx + 1,
         role: role,
         word: word,
-        isAlive: true
+        isAlive: true,
+        eliminatedRound: null
       };
     });
 
@@ -954,7 +952,7 @@ class UndercoverGame {
     if (player.role === 'blank') {
       this.secretRoleBadge.classList.add('badge-blank');
       this.secretRoleBadge.textContent = '🈳 白板天書';
-      this.secretWordText.textContent = '【 無字天書 】';
+      this.secretWordText.textContent = '無字天書';
       this.secretDescTip.textContent = '您手上一片空白！請完全靠演技與敏銳觀察，偽裝跟風混入大家之中！';
     } else {
       // 平民與臥底一律顯示「您的祕密詞條」，顏色與提示完全相同，杜絕任何身分劇透
@@ -1040,7 +1038,7 @@ class UndercoverGame {
         </div>
         <div class="player-title">${p.id} 號玩家</div>
         <div class="player-status-tag ${p.isAlive ? 'tag-alive' : 'tag-dead'}">
-          ${p.isAlive ? (p.id === this.firstSpeakerId ? '🎤 首發' : '存活') : '☠️ 已出局'}
+          ${p.isAlive ? (p.id === this.firstSpeakerId ? '🎤 首發' : '存活') : `☠️ 第 ${p.eliminatedRound || this.roundCount} 輪出局`}
         </div>
         <!-- 主持人上帝視角資訊 (平時透過 class 隱藏) -->
         <div class="god-player-info">
@@ -1120,6 +1118,7 @@ class UndercoverGame {
     const targetPlayer = this.players.find(p => p.id === playerId);
     if (targetPlayer) {
       targetPlayer.isAlive = false;
+      targetPlayer.eliminatedRound = this.roundCount;
       soundFx.playEliminate();
     }
 
@@ -1169,18 +1168,19 @@ class UndercoverGame {
       return null;
     }
 
-    // ── 模式 C: 標準經典局 ──
-    // 1. 若所有臥底與白板全數出局 -> 平民獲勝
+    // ── 模式 C: 聚會極致推理模式（決戰到底，直到全部抓出！）──
+    // 1. 若所有臥底與白板全數被揪出淘汰 -> 平民大獲全勝！
     if (aliveNonCivilians === 0) {
       return 'civilian';
     }
 
-    // 2. 若臥底 + 白板人數 >= 平民人數 -> 臥底陣營獲勝
-    if (aliveNonCivilians >= aliveCivilians) {
+    // 2. 決戰到底：直到平民「全部出局 (存活平民 === 0)」或全場只剩 1 人時，遊戲才結束！
+    // 只要場上還有平民且還有未被抓出的臥底/白板，就絕對不提早結束，讓大家繼續發言、投票抓出所有人！
+    if (aliveCivilians === 0 || alivePlayers.length <= 1) {
       return 'undercover';
     }
 
-    // 尚無結果
+    // 尚無結果，繼續進行下一輪發言與投票！
     return null;
   }
 
@@ -1192,16 +1192,17 @@ class UndercoverGame {
     this.revealCivilianWord.textContent = this.civilianWord;
     this.revealUndercoverWord.textContent = this.undercoverWord;
 
+    const roundBattleText = `⚔️ 歷經 ${this.roundCount} 輪激烈交鋒！`;
     if (winner === 'civilian') {
       this.resultIcon.textContent = '👨‍🌾🎉';
       this.resultTitle.textContent = '平民陣營 獲勝！';
       this.resultTitle.className = 'result-title title-civilian';
-      this.resultDesc.textContent = '正義必得伸張！所有潛藏的臥底與白板已被全體平民全數抓出！';
+      this.resultDesc.textContent = `${roundBattleText}太神了！所有潛藏的臥底與白板已被全體平民全數揪出！`;
     } else if (winner === 'undercover') {
       this.resultIcon.textContent = '🕵️‍♂️👑';
       this.resultTitle.textContent = '臥底陣營 獲勝！';
       this.resultTitle.className = 'result-title title-undercover';
-      this.resultDesc.textContent = '心機太深了！臥底與白板成功潛伏混淆平民，人數逆轉拿下勝利！';
+      this.resultDesc.textContent = `${roundBattleText}心機太深了！臥底成功隱藏到最後拿下勝利！`;
     } else if (winner === 'blank') {
       this.resultIcon.textContent = '🈳⚡';
       this.resultTitle.textContent = '白板大反殺 獨贏獲勝！';
@@ -1230,8 +1231,8 @@ class UndercoverGame {
         roleName = '🈳 白板';
       }
 
-      // 存活或出局狀態
-      const statusText = p.isAlive ? '🏆 存活獲勝' : '☠️ 已出局';
+      // 存活或出局狀態（含出局輪次）
+      const statusText = p.isAlive ? '🏆 存活獲勝' : `☠️ 第 ${p.eliminatedRound || this.roundCount} 輪出局`;
       const statusClass = p.isAlive ? 'badge-survived' : 'badge-eliminated';
 
       card.innerHTML = `

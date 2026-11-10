@@ -637,18 +637,51 @@ input:checked + .slider-round:before {
   padding: 0.15rem 0.5rem;
   border-radius: var(--radius-full);
 }
+/* ── 三大陣營身分標籤專屬顏色 ── */
+.badge-civilian {
+  background-color: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.badge-undercover {
+  background-color: rgba(244, 63, 94, 0.15);
+  color: #f43f5e;
+  border: 1px solid rgba(244, 63, 94, 0.35);
+}
+
+.badge-blank {
+  background-color: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+}
+
 
 .god-word-text {
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 800;
   color: #fff;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.2rem 0.35rem;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  word-break: break-all;
+  white-space: nowrap;
+}
+
+.player-word-tag {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
   padding: 0.2rem 0.4rem;
   border-radius: var(--radius-sm);
-  max-width: 95%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  margin-top: 0.35rem;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 
