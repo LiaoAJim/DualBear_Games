@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>誰是臥底 (Undercover) - 經典心機破冰遊戲</title>
   <meta name="description" content="聚會派對必玩！平民、臥底與白板的心機推理演技大考驗，一台手機輪流傳看即可開玩！">
-  <link rel="stylesheet" href="css/style.css?v=1.3.2">
+  <link rel="stylesheet" href="css/style.css?v=1.3.7">
 </head>
 <body>
   <!-- 頂部導航列 -->
@@ -161,7 +161,14 @@
         <div class="speaker-name" id="speakerName">3 號玩家</div>
       </div>
 
-      <p class="config-hint vote-hint-text">依序發言後進行全員表態投票，點擊票數最多的人將其處決淘汰：</p>
+            <!-- 投票處決操作指引橫幅 -->
+      <div class="vote-guide-banner">
+        <div class="vote-guide-icon">🗳️</div>
+        <div class="vote-guide-content">
+          <div class="vote-guide-title">發言完畢？請全員倒數投票！</div>
+          <div class="vote-guide-sub">點擊票數最多人的卡片 ➔ 將其處決淘汰（若平票加賽可點下方「進入下一輪」）</div>
+        </div>
+      </div>
 
       <!-- 玩家清單網格 -->
       <div class="players-grid" id="playersGrid">
@@ -170,7 +177,7 @@
 
       <div class="bottom-actions">
         <button class="btn-sub" id="btnNextRound">
-          <span>🔄</span> 無人出局，進入下一輪
+          <span>🔄</span> 進入下一輪
         </button>
       </div>
     </section>
@@ -552,7 +559,7 @@
   </aside>
 
   <!-- 引入模組化腳本 -->
-  <script type="module" src="js/app.js?v=1.3.5"></script>
+  <script type="module" src="js/app.js?v=1.3.8"></script>
 </body>
 </html>
 

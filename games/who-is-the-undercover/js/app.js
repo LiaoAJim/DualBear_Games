@@ -1040,6 +1040,7 @@ class UndercoverGame {
         <div class="player-status-tag ${p.isAlive ? 'tag-alive' : 'tag-dead'}">
           ${p.isAlive ? (p.id === this.firstSpeakerId ? '🎤 首發' : '存活') : `☠️ 第 ${p.eliminatedRound || this.roundCount} 輪出局`}
         </div>
+        ${p.isAlive ? '<div class="card-action-hint">👉 點擊處決</div>' : ''}
         <!-- 主持人上帝視角資訊 (平時透過 class 隱藏) -->
         <div class="god-player-info">
           <span class="god-role-tag ${roleTagClass}">${roleName}</span>

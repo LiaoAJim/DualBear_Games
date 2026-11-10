@@ -693,8 +693,64 @@ input:checked + .slider-round:before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
 }
+/* ── 投票處決醒目引導橫幅 ── */
+.vote-guide-banner {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(239, 68, 68, 0.12));
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.vote-guide-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.vote-guide-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-align: left;
+}
+
+.vote-guide-title {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #fbbf24;
+  letter-spacing: 0.5px;
+}
+
+.vote-guide-sub {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  line-height: 1.35;
+}
+
+.card-action-hint {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px dashed rgba(245, 158, 11, 0.35);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+  margin-top: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.player-card:hover .card-action-hint {
+  background: rgba(245, 158, 11, 0.25);
+  border-color: #fbbf24;
+  color: #fff;
+}
+
 
 .speaker-title {
   font-size: 0.9rem;

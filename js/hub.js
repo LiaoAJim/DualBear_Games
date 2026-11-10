@@ -72,9 +72,6 @@ class GameHub {
     this.currentCategory = 'all';
     this.container = document.getElementById('gamesGrid');
     this.tabsContainer = document.getElementById('filterTabs');
-    this.btnOpenHelp = document.getElementById('btnOpenHelp');
-    this.btnCloseHelp = document.getElementById('btnCloseHelp');
-    this.helpModal = document.getElementById('helpModal');
     this.init();
   }
 
