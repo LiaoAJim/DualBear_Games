@@ -469,3 +469,151 @@ body {
   font-size: 0.8rem;
   color: #64748b;
 }
+
+/* ── 右上角即時時鐘與氣象資訊膠囊 (50/50 雙欄絕對對齊) ── */
+.hub-weather-widget {
+  display: flex;
+  align-items: center;
+}
+
+.weather-clock-box {
+  background: linear-gradient(135deg, rgba(21, 29, 47, 0.95), rgba(30, 41, 59, 0.9));
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: var(--radius-md);
+  padding: 0.55rem 0.85rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 285px;
+  box-sizing: border-box;
+}
+
+.wc-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.wc-row-border {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.35rem;
+}
+
+.wc-col {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.wc-col-left {
+  justify-content: flex-start;
+  gap: 0.35rem;
+}
+
+.wc-col-right {
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+
+/* 第 1 排：時間與日期 */
+.wc-clock-icon {
+  font-size: 0.95rem;
+}
+
+.wc-time-text {
+  font-size: 1.05rem;
+  font-weight: 800;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #60a5fa;
+  letter-spacing: 0.5px;
+}
+
+.wc-date-text {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.wc-day-text {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+/* 第 2 排：當前天氣與高低溫 */
+.wc-weather-icon {
+  font-size: 1rem;
+}
+
+.wc-weather-status {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.wc-temp-current {
+  font-size: 0.85rem;
+  color: #f8fafc;
+  font-weight: 800;
+}
+
+/* 徽章膠囊風格（統一左側對稱或右側對稱） */
+.wc-metric-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 0.12rem 0.45rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+}
+
+.wc-badge-temp {
+  color: #38bdf8;
+}
+
+.wc-badge-precip {
+  color: #60a5fa;
+  background: rgba(96, 165, 250, 0.12);
+  border-color: rgba(96, 165, 250, 0.25);
+}
+
+/* 第 3 排：日照時間 */
+.wc-col-sun {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 600;
+  gap: 0.3rem;
+}
+
+.wc-sun-icon {
+  font-size: 0.88rem;
+}
+
+.wc-sun-text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #cbd5e1;
+}
+
+/* RWD 響應式適配 */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  
+  .hub-weather-widget {
+    width: 100%;
+  }
+
+  .weather-clock-box {
+    width: 100%;
+    min-width: unset;
+    padding: 0.5rem 0.75rem;
+  }
+}

@@ -1,3 +1,4 @@
+import { WeatherClockWidget } from './weather-widget.js?v=1.3.0';
 /**
  * DualBear Games 遊戲大廳自動掛載與動態加載模組
  */
@@ -73,6 +74,7 @@ class GameHub {
     this.container = document.getElementById('gamesGrid');
     this.tabsContainer = document.getElementById('filterTabs');
     this.init();
+    new WeatherClockWidget();
   }
 
   async init() {
