@@ -21,7 +21,18 @@ export class QuestionBank {
       const saved = localStorage.getItem(this.storageKey);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          // 自動遷移：將歷史 5 字分類統一名稱為 4 字
+          let updated = false;
+          parsed.forEach(q => {
+            if (q.category === '日常與動作') { q.category = '日常動作'; updated = true; }
+            if (q.category === '職業與角色') { q.category = '職場角色'; updated = true; }
+          });
+          if (updated) {
+            try { localStorage.setItem(this.storageKey, JSON.stringify(parsed)); } catch (e) {}
+          }
+          return parsed;
+        }
       }
     } catch (e) {}
     return JSON.parse(JSON.stringify(DEFAULT_QUESTIONS));
