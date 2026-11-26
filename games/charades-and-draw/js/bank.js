@@ -5,10 +5,10 @@ import { DEFAULT_QUESTIONS } from './questions.js';
 
 export class QuestionBank {
   constructor() {
-    this.storageKey = 'dualbear_guess_questions_v2';
-    this.checkedKey = 'dualbear_guess_checked_ids_v2';
-    this.modeKey = 'dualbear_guess_play_mode_v2';
-    this.seqIndexKey = 'dualbear_guess_seq_idx_v2';
+    this.storageKey = 'dualbear_guess_questions_v3';
+    this.checkedKey = 'dualbear_guess_checked_ids_v3';
+    this.modeKey = 'dualbear_guess_play_mode_v3';
+    this.seqIndexKey = 'dualbear_guess_seq_idx_v3';
 
     this.questions = this.loadQuestions();
     this.checkedIds = this.loadCheckedIds();
@@ -18,19 +18,23 @@ export class QuestionBank {
 
   loadQuestions() {
     try {
-      const saved = localStorage.getItem(this.storageKey);
+      // 優先載入 v3
+      let saved = localStorage.getItem(this.storageKey);
+      if (!saved) {
+        // 若無 v3 則讀取 v2 並自動遷移為 4 字分類
+        saved = localStorage.getItem('dualbear_guess_questions_v2');
+      }
+
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          // 自動遷移：將歷史 5 字分類統一名稱為 4 字
-          let updated = false;
+          // 強制所有分類對齊 4 字
           parsed.forEach(q => {
-            if (q.category === '日常與動作') { q.category = '日常動作'; updated = true; }
-            if (q.category === '職業與角色') { q.category = '職場角色'; updated = true; }
+            if (q.category === '日常與動作') q.category = '日常動作';
+            if (q.category === '職業與角色') q.category = '職場角色';
           });
-          if (updated) {
-            try { localStorage.setItem(this.storageKey, JSON.stringify(parsed)); } catch (e) {}
-          }
+          // 儲存至 v3
+          try { localStorage.setItem(this.storageKey, JSON.stringify(parsed)); } catch (e) {}
           return parsed;
         }
       }
