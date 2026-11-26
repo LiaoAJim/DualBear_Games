@@ -29,3 +29,13 @@ dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Local Dev & AI Agent Collaboration Files
+.agent_task_state.md
+GEMINI.md
+AGENTS.md
+CLAUDE.md
+CHANGELOG.md
+docs/
+*.url
+git_sync.py
