@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>你畫我猜 & 比手畫腳 - DualBear Games</title>
+  <meta name="description" content="聚會必備！支援比手畫腳與塗鴉畫板雙模式，考驗肢體演技與繪畫靈魂默契！">
+  <link rel="stylesheet" href="css/style.css?v=1.2.3">
+</head>
+<body>
+  <!-- 頂部導航列 -->
+  <header class="game-header">
+    <div class="header-left">
+      <a href="../../index.html" class="btn-icon-nav" id="btnBackHome" title="返回遊戲大廳">
+        <span>🏠</span> <span class="nav-text">回大廳</span>
+      </a>
+      <div class="game-title-wrap">
+        <h1 class="game-title">你畫我猜 & 比手畫腳</h1>
+        <span class="game-badge">雙模式</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="btn-icon-nav" id="btnSoundToggle" title="音效開關">
+        <span id="soundIcon">🔊</span>
+      </button>
+      <button class="btn-icon-nav" id="btnOpenBank" title="題庫管理中心">
+        <span>⚙️</span> <span class="nav-text">題庫</span>
+      </button>
+      <button class="btn-icon-nav" id="btnOpenHelp" title="遊戲玩法與主持人引導">
+        <span>📖</span> <span class="nav-text">規則</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 主操作容器 -->
+  <main class="app-container">
+    <!-- 狀態資訊列：紅藍隊伍即時積分、指定出題分類、倒數計時設定 -->
+    <section class="status-bar-card" aria-label="遊戲狀態">
+      <!-- 頂行：隊伍分數與計時器 (3 區等寬方塊排一排) -->
+      <div class="status-row-top status-row-grid3">
+        <!-- 區塊 1: 紅隊 -->
+        <div class="team-pill team-red active status-card-square" id="pillTeamRed" title="點擊切換為紅隊回合">
+          <div class="status-card-header">
+            <span class="team-name-label">🔴 紅隊</span>
+            <button class="btn-score-adjust" id="btnMinusRed" title="紅隊 -1 分 (若按錯可修正)">➖</button>
+          </div>
+          <div class="status-card-value">
+            <span class="team-score-num" id="scoreRed">0</span>
+            <span class="status-card-unit">分</span>
+          </div>
+        </div>
+
+        <!-- 區塊 2: 藍隊 -->
+        <div class="team-pill team-blue status-card-square" id="pillTeamBlue" title="點擊切換為藍隊回合">
+          <div class="status-card-header">
+            <span class="team-name-label">🔵 藍隊</span>
+            <button class="btn-score-adjust" id="btnMinusBlue" title="藍隊 -1 分 (若按錯可修正)">➖</button>
+          </div>
+          <div class="status-card-value">
+            <span class="team-score-num" id="scoreBlue">0</span>
+            <span class="status-card-unit">分</span>
+          </div>
+        </div>
+
+        <!-- 區塊 3: 倒數計時器 -->
+        <button class="timer-box btn-timer-setting status-card-square" id="btnTimerBox" title="點擊修改回合秒數 (例如 30s/60s/90s 或自訂)">
+          <div class="status-card-header">
+            <span>⏱️ 倒數</span>
+            <span class="timer-gear-icon">⚙️</span>
+          </div>
+          <div class="status-card-value">
+            <span class="timer-num" id="timerDisplay">60</span>
+            <span class="status-card-unit">秒</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- 底行：主畫面出題分類切換 -->
+      <div class="play-category-picker-box">
+        <label for="selectPlayCategory" class="play-picker-label">🎯 出題分類：</label>
+        <select class="form-select play-category-select" id="selectPlayCategory" title="選擇出題分類">
+          <option value="ALL">🌐 全部分類 (全 180 題隨機)</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- 舞台核心區塊 -->
+    <section class="stage-card" id="stageCard">
+      <!-- 模式切換開關 (遊戲進行中亦可切換) -->
+      <div class="mode-switch-group" role="tablist">
+        <button class="mode-btn active" id="btnModeCharades" role="tab" aria-selected="true">
+          🎭 比手畫腳
+        </button>
+        <button class="mode-btn" id="btnModeDraw" role="tab" aria-selected="false">
+          🎨 塗鴉畫板
+        </button>
+      </div>
+
+      <!-- 模式一：比手畫腳展示區 -->
+      <div class="charades-display-area" id="charadesDisplayArea">
+        <div class="category-and-index-bar">
+          <span class="word-category-badge" id="categoryBadge">分類：動物世界</span>
+          <span class="question-progress-pill" id="questionProgressPill">🎯 第 1 題</span>
+          <span class="passed-count-pill" id="passedCountPill">⏭️ 跳過: 0</span>
+        </div>
+        
+        <div class="secret-word-box">
+          <div class="secret-word" id="secretWordDisplay">企鵝走路</div>
+          <div class="secret-hint" id="secretHintDisplay">提示：走起路來搖搖擺擺</div>
+          
+          <!-- 防偷看遮罩 (點擊翻開) -->
+          <div class="cover-overlay" id="coverOverlay">
+            <span class="cover-tip">🤫 只有出題者能看！點擊揭曉題目</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 模式二：塗鴉畫板展示區 -->
+      <div class="draw-stage-area" id="drawStageArea">
+        <div class="draw-header-bar">
+          <span class="draw-secret-word-pill" id="drawWordPill">題目：??? (點擊偷看)</span>
+          <div class="draw-category-wrap">
+            <span class="word-category-badge" id="drawCategoryBadge">分類：日常與動作</span>
+            <span class="question-progress-pill" id="drawProgressPill">🎯 第 1 題</span>
+            <span class="passed-count-pill" id="drawPassedPill">⏭️ 跳過: 0</span>
+          </div>
+        </div>
+
+        <div class="canvas-wrapper" id="canvasWrapper">
+          <canvas id="drawCanvas" class="draw-canvas"></canvas>
+          <!-- 橡皮擦即時範圍指示圓圈 -->
+          <div class="eraser-cursor" id="eraserCursor" aria-hidden="true"></div>
+        </div>
+
+        <!-- 畫筆工具列 -->
+        <div class="draw-toolbar">
+          <div class="color-dots-group">
+            <button class="color-dot dot-white active" data-color="#ffffff" title="白色" aria-label="白色"></button>
+            <button class="color-dot dot-red" data-color="#f87171" title="紅色" aria-label="紅色"></button>
+            <button class="color-dot dot-yellow" data-color="#fbbf24" title="黃色" aria-label="黃色"></button>
+            <button class="color-dot dot-green" data-color="#34d399" title="綠色" aria-label="綠色"></button>
+            <button class="color-dot dot-blue" data-color="#60a5fa" title="藍色" aria-label="藍色"></button>
+          </div>
+
+          <button class="tool-action-btn" id="btnEraser" title="橡皮擦">
+            <span>🧹</span> 橡皮擦
+          </button>
+          <button class="tool-action-btn" id="btnUndo" title="上一步撤銷">
+            <span>↩️</span> 復原
+          </button>
+          <button class="tool-action-btn" id="btnClearCanvas" title="清除畫布">
+            <span>🗑️</span> 清空
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 底部操作列 (搶答、跳過、加分、計時控制) -->
+    <section class="controls-bottom-bar" aria-label="操作按鈕">
+      <button class="btn-action-pass" id="btnPass" title="跳過本題">
+        <span>⏭️</span> 跳過
+      </button>
+
+      <button class="btn-action-correct" id="btnCorrect" title="答對加一分並抽下一題">
+        <span>🎉</span> 答對！+1 分
+      </button>
+
+      <button class="btn-action-timer" id="btnToggleTimer" title="啟動/暫停計時">
+        <span id="timerBtnIcon">▶️</span> <span id="timerBtnText">開始</span>
+      </button>
+    </section>
+  </main>
+
+  <!-- 📖 玩法說明與主持人引導彈窗 (黃金四要素規範) -->
+  <div class="modal-backdrop" id="modalHelp" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title" id="helpTitle">📖 遊戲玩法與主持人收尾引導</h2>
+        <button class="modal-close-btn" id="btnCloseHelp" aria-label="關閉說明">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- 1. 基礎破冰流程 -->
+        <section>
+          <h3 class="rule-section-title">🎯 基礎破冰流程（無壓力三步驟）</h3>
+          <div class="rule-box">
+            <ol class="rule-steps-list">
+              <li><strong>選定模式與出題者</strong>：選擇「🎭 比手畫腳」或「🎨 塗鴉畫板」，每回合由一位玩家上前看題。</li>
+              <li><strong>倒數計時搶猜</strong>：點擊「▶️ 開始」啟動 60 秒倒數，出題者限用肢體動作（比手畫腳）或畫筆線條（塗鴉）提示，嚴禁出聲說出題目關鍵字！</li>
+              <li><strong>隊友搶答得分</strong>：同隊隊友在時間內猜中答案，點擊「🎉 答對！+1 分」立即累積得分並切換下一題；時間內猜不出可點「⏭️ 放棄跳過」。</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- 2. 聚會計分玩法 -->
+        <section>
+          <h3 class="rule-section-title">🏆 聚會計分玩法（競賽與計分模式）</h3>
+          <div class="rule-box">
+            <p><strong>模式 A【紅藍紅白對抗賽】</strong>：分成紅隊與藍隊，每隊輪流派人出題 3~5 回合，累計答對總題數多者獲勝！</p>
+            <p><strong>模式 B【個人極速挑戰賽】</strong>：每人 60 秒限時個人秀，看誰能在時間內讓全場猜出最多題目，封為「當日影帝 / 神筆馬良」！</p>
+          </div>
+        </section>
+
+        <!-- 3. 專屬懲罰與獎勵 -->
+        <section>
+          <h3 class="rule-section-title">🎯 遊戲專屬懲罰與特權</h3>
+          <div class="rule-box">
+            <p><strong>輸家極限處罰【靈魂默劇再現】</strong>：輸家隊伍必須由得分最低者，無聲重演剛才全場猜最久的那一題，直到全體笑翻通過為止！</p>
+            <p><strong>贏家專屬特權【自選題目特權】</strong>：贏家下一輪可直接自訂一道題目給對手猜，享受主宰全場的快感！</p>
+          </div>
+        </section>
+
+        <!-- 4. 主持人引導專區 (輪播卡片) -->
+        <section>
+          <h3 class="rule-section-title">✝️ 主持人引導專區（結語輪播卡片）</h3>
+          <div class="carousel-wrap">
+            <div class="carousel-card-content" id="carouselContent">
+              <!-- JS 動態填入結語卡片 -->
+            </div>
+            <div class="carousel-nav-bar">
+              <button class="carousel-arrow-btn" id="btnPrevCard" title="上一頁">◀</button>
+              <span class="carousel-indicator" id="carouselIndicator">1 / 4</span>
+              <button class="carousel-arrow-btn" id="btnNextCard" title="下一頁">▶</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⚙️ 題庫管理中心彈窗 (支援隨機/僅勾選/循序出題、新增、TXT 匯入匯出) -->
+  <div class="modal-backdrop" id="modalBank" role="dialog" aria-modal="true" aria-labelledby="bankTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title" id="bankTitle">⚙️ 題庫設定與管理中心</h2>
+        <button class="modal-close-btn" id="btnCloseBank" aria-label="關閉題庫">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- 分頁標籤 -->
+        <div class="bank-tabs" role="tablist">
+          <button class="bank-tab-btn active" data-tab="tabMode" role="tab">🎲 出題模式</button>
+          <button class="bank-tab-btn" data-tab="tabList" role="tab">📋 題庫總覽 (<span id="bankCount">0</span>)</button>
+          <button class="bank-tab-btn" data-tab="tabAdd" role="tab">➕ 新增題目</button>
+          <button class="bank-tab-btn" data-tab="tabIO" role="tab">💾 匯出/匯入</button>
+        </div>
+
+        <!-- 分頁 1: 出題模式 -->
+        <div class="bank-tab-pane active" id="tabMode">
+          <div class="form-group">
+            <label class="form-label">選擇出題模式：</label>
+            <select class="form-select" id="selectPlayMode">
+              <option value="random">🎲 題庫隨機出題（推薦）</option>
+              <option value="checked_only">🎯 僅出勾選題目（自選精選題庫）</option>
+              <option value="sequential">📜 循序依序出題（排程模式）</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">預設每回合倒數秒數：</label>
+            <select class="form-select" id="selectDefaultTimer">
+              <option value="45">45 秒（緊張刺激）</option>
+              <option value="60" selected>60 秒（黃金標準）</option>
+              <option value="90">90 秒（適合新手/畫圖）</option>
+              <option value="120">120 秒（悠閒放鬆）</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 分頁 2: 題庫列表與勾選 -->
+        <div class="bank-tab-pane" id="tabList">
+          <div class="table-actions-bar">
+            <div class="table-actions-left">
+              <button class="btn-icon-nav" id="btnCheckAll">✅ 全選</button>
+              <button class="btn-icon-nav" id="btnUncheckAll">❌ 全部取消</button>
+              <button class="btn-icon-nav" id="btnResetDefault">🔄 重設原廠</button>
+            </div>
+            <!-- 分類篩選下拉選單 -->
+            <div class="category-filter-box">
+              <label for="selectCategoryFilter" class="filter-label">分類：</label>
+              <select class="form-select filter-select" id="selectCategoryFilter">
+                <option value="ALL">🌐 全部分類 (全部)</option>
+              </select>
+            </div>
+          </div>
+          <div class="questions-table-wrap">
+            <table class="q-table">
+              <thead>
+                <tr>
+                  <th class="col-index-th">#</th>
+                  <th class="col-check">出題</th>
+                  <th class="col-category-th">分類</th>
+                  <th>題目詞條</th>
+                  <th class="col-op">操作</th>
+                </tr>
+              </thead>
+              <tbody id="questionsTableBody">
+                <!-- 由 JS 動態填入 -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 分頁 3: 新增題目 -->
+        <div class="bank-tab-pane" id="tabAdd">
+          <div class="form-group">
+            <label class="form-label">題目分類：</label>
+            <input type="text" class="form-input" id="inputNewCategory" placeholder="例如：團契人物、公司內梗、動物世界" value="自訂題目">
+          </div>
+          <div class="form-group">
+            <label class="form-label">題目詞條 (Word)：</label>
+            <input type="text" class="form-input" id="inputNewWord" placeholder="例如：摩西分紅海、企鵝跌倒">
+          </div>
+          <div class="form-group">
+            <label class="form-label">演繹提示 (Hint)：</label>
+            <input type="text" class="form-input" id="inputNewHint" placeholder="例如：高舉手杖水向兩邊分開">
+          </div>
+          <button class="btn-primary-block" id="btnSaveNewQuestion">💾 儲存並加入題庫</button>
+        </div>
+
+        <!-- 分頁 4: TXT 匯出 / 匯入 -->
+        <div class="bank-tab-pane" id="tabIO">
+          <div class="form-group">
+            <label class="form-label">TXT 批次匯入（格式：分類 | 題目 | 提示）：</label>
+            <textarea class="form-textarea" id="textareaImport" rows="5" placeholder="動物世界 | 變色龍 | 會隱形改變顏色&#10;日常動作 | 踩到狗屎 | 單腳跳"></textarea>
+            <button class="btn-primary-block" id="btnExecuteImport">📥 匯入至題庫</button>
+          </div>
+          <div class="divider-line"></div>
+          <div class="form-group">
+            <button class="btn-icon-nav" id="btnDownloadTxt">📤 匯出題庫為 TXT 文字檔</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js?v=1.2.3"></script>
+</body>
+</html>

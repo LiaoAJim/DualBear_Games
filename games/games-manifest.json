@@ -41,5 +41,27 @@
     "version": "1.0.0",
     "entry": "index.html",
     "path": "games/who-is-the-undercover/index.html"
+  },
+  {
+    "id": "charades-and-draw",
+    "name": "你畫我猜 & 比手畫腳 (Party Guess)",
+    "description": "經典派對必備！支援「肢體表演」與「塗鴉畫板」雙模式，考驗演技、畫技與默契！",
+    "category": "肢體表演",
+    "howToPlay": "玩法：一人看題表演/繪畫 ➔ 全場隊友限時搶猜 ➔ 答對累計得分！",
+    "icon": "🎭",
+    "color": "#8b5cf6",
+    "tags": [
+      "破冰",
+      "表演",
+      "畫畫",
+      "派對",
+      "團隊競爭"
+    ],
+    "minPlayers": 2,
+    "maxPlayers": 20,
+    "author": "DualBear Games",
+    "version": "1.0.0",
+    "entry": "index.html",
+    "path": "games/charades-and-draw/index.html"
   }
 ]

@@ -1,0 +1,1328 @@
+/* ==========================================================
+   DualBear Games: 你畫我猜 & 比手畫腳 專屬樣式表 (Strict CSS)
+   - 100% 零 HTML 行內樣式，全由 class 控制
+   - 跨端 RWD 適配 (桌機/電視/iOS/Android 手機)
+   - 支援夜間高對比與流暢動畫
+   ========================================================== */
+
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --surface-card: rgba(30, 41, 59, 0.85);
+  --surface-border: rgba(255, 255, 255, 0.12);
+  --primary: #8b5cf6;
+  --primary-hover: #7c3aed;
+  --secondary: #06b6d4;
+  --accent-gold: #f59e0b;
+  --danger: #ef4444;
+  --success: #10b981;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+  --font-mono: "SF Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-stack);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+/* 頂部導航列 */
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--surface-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  gap: 12px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.game-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.game-title {
+  font-size: 16px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-icon-nav {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--surface-border);
+  color: var(--text-main);
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+/* 狀態頂部列 (分兩行排版，徹底杜絕擠壓橫出) */
+.status-bar-card {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  border-radius: 16px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.status-row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+/* 頂行 3 區成扁平長方形排一排 (紅隊、藍隊、計時器) */
+.status-row-grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+.status-card-square {
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  gap: 3px;
+}
+
+.status-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 11.5px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.status-card-value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+}
+
+.status-card-unit {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.timer-gear-icon {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.team-scores-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.play-category-picker-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.play-picker-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #c4b5fd;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.play-category-select {
+  flex: 1;
+  padding: 7px 10px;
+  font-size: 13.5px;
+  border-radius: 10px;
+  background: #0f172a;
+  border: 1px solid var(--surface-border);
+  color: #f1f5f9;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.team-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.team-pill.team-red {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.team-pill.team-blue {
+  background: rgba(6, 182, 212, 0.15);
+  color: #38bdf8;
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+.team-pill.active {
+  box-shadow: 0 0 14px currentColor;
+  border-color: currentColor;
+  transform: none; /* 嚴禁 scale 放大，避免在並排排版時覆蓋壓到相鄰的卡片 */
+  z-index: 1;
+}
+
+.team-score-num {
+  font-family: var(--font-mono);
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* 扣分微調按鈕 */
+.btn-score-adjust {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #e2e8f0;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  cursor: pointer;
+  margin-left: 2px;
+  transition: all 0.15s ease;
+}
+
+.btn-score-adjust:hover {
+  background: rgba(239, 68, 68, 0.4);
+  border-color: #ef4444;
+  color: #fff;
+  transform: scale(1.15);
+}
+
+.btn-score-adjust:active {
+  transform: scale(0.95);
+}
+
+/* 主畫面出題分類切換 */
+.play-category-picker-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.play-picker-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.play-category-select {
+  padding: 6px 12px;
+  font-size: 13.5px;
+  border-radius: 10px;
+  background: #0f172a;
+  border: 1px solid var(--surface-border);
+  color: #f1f5f9;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 170px;
+}
+
+.play-category-select:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+/* 計時器 (可點擊設定) */
+.timer-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 6px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--surface-border);
+  color: var(--text-main);
+  transition: all 0.2s ease;
+}
+
+.btn-timer-setting {
+  cursor: pointer;
+}
+
+.btn-timer-setting:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(245, 158, 11, 0.5);
+  transform: translateY(-1px);
+}
+
+.timer-unit {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.timer-num {
+  font-family: var(--font-mono);
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--accent-gold);
+  line-height: 1;
+}
+
+.timer-num.danger {
+  color: var(--danger);
+  animation: pulse-danger 0.5s infinite alternate;
+}
+
+@keyframes pulse-danger {
+  from { transform: scale(1); }
+  to { transform: scale(1.15); }
+}
+
+/* 遊戲核心卡片 */
+.stage-card {
+  flex: 1;
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 模式選擇開關 (開始前) */
+.mode-switch-group {
+  display: flex;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid var(--surface-border);
+}
+
+.mode-btn {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mode-btn.active {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.5);
+}
+
+/* 題目展示區 (比手畫腳模式) */
+.charades-display-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 16px;
+  text-align: center;
+}
+
+.category-and-index-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.word-category-badge {
+  background: rgba(139, 92, 246, 0.2);
+  color: #c4b5fd;
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* 題目進度徽章（例如：🎯 第 3 題） */
+.question-progress-pill {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+/* 放棄跳過統計膠囊（例如：⏭️ 跳過: 2） */
+.passed-count-pill {
+  background: rgba(100, 116, 139, 0.25);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.secret-word-box {
+  background: rgba(0, 0, 0, 0.35);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 24px 32px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.secret-word {
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.secret-hint {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #fbbf24;
+  font-weight: 500;
+}
+
+/* 遮蔽防偷看遮罩 */
+.cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: #1e1b4b;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 0.15s ease;
+}
+
+/* 當已翻開題目時 */
+.cover-overlay.revealed {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* 當蓋回遮罩時，瞬間切換為不透明與可見，嚴禁延遲透明造成新題目外洩 */
+.cover-overlay:not(.revealed) {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transition: none !important;
+}
+
+.cover-tip {
+  font-size: 15px;
+  color: #cbd5e1;
+}
+
+/* 塗鴉畫板區域 (你畫我猜模式) */
+.draw-stage-area {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 12px;
+}
+
+.draw-stage-area.active {
+  display: flex;
+}
+
+.draw-header-bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 4px;
+  position: relative;
+}
+
+.draw-secret-word-pill {
+  background: rgba(139, 92, 246, 0.25);
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  padding: 4px 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #e2e8f0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* 預設（桌機、平板）：3 區排一排橫向居中於整個舞台頂部 */
+.draw-category-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.draw-category-wrap .word-category-badge,
+.draw-category-wrap .question-progress-pill,
+.draw-category-wrap .passed-count-pill {
+  text-align: center;
+  box-sizing: border-box;
+  justify-content: center;
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+.canvas-wrapper {
+  width: 100%;
+  flex: 1;
+  min-height: 280px;
+  max-height: 380px;
+  border: 2px solid var(--surface-border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #1e293b;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+  touch-action: none; /* 禁用預設觸控手勢 */
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+}
+
+.draw-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: crosshair;
+  touch-action: none !important; /* 確保畫布嚴格鎖定，不可拖曳整頁滾動 */
+  -webkit-touch-callout: none;
+}
+
+/* 橡皮擦模式下的游標為透明無游標（由自訂圓圈取代） */
+.draw-canvas.is-eraser-mode {
+  cursor: none;
+}
+
+/* 橡皮擦實體範圍指示圓圈 (24px 擦除範圍) */
+.eraser-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.9), inset 0 0 3px rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  display: none;
+  transform: translate(-50%, -50%) translate(var(--cursor-x, -100px), var(--cursor-y, -100px));
+  z-index: 20;
+}
+
+.eraser-cursor.visible {
+  display: block;
+}
+
+/* 畫筆工具列 */
+.draw-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--surface-border);
+}
+
+.color-dots-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.color-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.color-dot.dot-white {
+  background-color: #ffffff;
+}
+
+.color-dot.dot-red {
+  background-color: #f87171;
+}
+
+.color-dot.dot-yellow {
+  background-color: #fbbf24;
+}
+
+.color-dot.dot-green {
+  background-color: #34d399;
+}
+
+.color-dot.dot-blue {
+  background-color: #60a5fa;
+}
+
+.color-dot.active {
+  transform: scale(1.25);
+  border-color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+}
+
+.tool-action-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--surface-border);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.2s;
+}
+
+.tool-action-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.tool-action-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+/* 底部操作控制列 (搶答、跳過、加分、計時控制) */
+.controls-bottom-bar {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.btn-action-pass {
+  background: rgba(100, 116, 139, 0.3);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  color: #cbd5e1;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-action-pass:hover {
+  background: rgba(100, 116, 139, 0.5);
+  color: #fff;
+}
+
+.btn-action-correct {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: none;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 14px;
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-action-correct:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+}
+
+.btn-action-correct:active {
+  transform: translateY(1px);
+}
+
+.btn-action-timer {
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  color: #fcd34d;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-action-timer:hover {
+  background: rgba(245, 158, 11, 0.35);
+  color: #fff;
+}
+
+/* 彈窗共通樣式 (全繁中、無行內樣式) */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: #1e293b;
+  border: 1px solid var(--surface-border);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 640px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  transform: translateY(20px);
+  transition: transform 0.25s ease;
+}
+
+.modal-backdrop.open .modal-card {
+  transform: translateY(0);
+}
+
+.modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--surface-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+
+.modal-close-btn:hover {
+  color: #fff;
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 玩法說明四要素卡片 */
+.rule-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.rule-box {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+.rule-steps-list {
+  padding-left: 20px;
+  margin-top: 6px;
+}
+
+/* 輪播卡片 */
+.carousel-wrap {
+  position: relative;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: 8px;
+}
+
+.carousel-card-content {
+  min-height: 90px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+.carousel-nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 8px;
+}
+
+.carousel-arrow-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.carousel-indicator {
+  font-size: 12px;
+  color: #94a3b8;
+  font-family: var(--font-mono);
+}
+
+.carousel-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #a78bfa;
+  margin-bottom: 6px;
+}
+
+.carousel-card-text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+.cell-center {
+  text-align: center;
+}
+
+.cell-category {
+  color: #c4b5fd;
+}
+
+.cell-hint {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.btn-del-item {
+  padding: 2px 6px;
+  font-size: 11px;
+}
+
+/* 隱藏/顯示輔助類 */
+.u-hidden {
+  display: none !important;
+}
+
+.u-flex {
+  display: flex !important;
+}
+
+/* 題庫管理分頁 */
+.bank-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--surface-border);
+  gap: 8px;
+}
+
+.bank-tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.bank-tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.bank-tab-pane {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bank-tab-pane.active {
+  display: flex;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.form-input, .form-select, .form-textarea {
+  background: #0f172a;
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+/* 確保原生 select 下拉清單的 option 具備深色底色與高對比清晰文字，防止瀏覽器預設灰底白字看不清 */
+.form-select option {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.form-select optgroup {
+  background: #0f172a;
+  color: #94a3b8;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #1e293b;
+}
+
+.btn-primary-block {
+  background: var(--primary);
+  border: none;
+  color: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-primary-block:hover {
+  background: var(--primary-hover);
+}
+
+.table-actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-actions-left {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.category-filter-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.filter-select {
+  padding: 6px 10px;
+  font-size: 13px;
+  min-width: 140px;
+}
+
+.col-index-th {
+  width: 42px;
+  text-align: center;
+}
+
+.col-check {
+  width: 44px;
+  text-align: center;
+}
+
+.col-category-th {
+  width: 105px;
+}
+
+.col-op {
+  width: 48px;
+  text-align: center;
+}
+
+.cell-index {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.divider-line {
+  height: 1px;
+  background: var(--surface-border);
+  margin: 10px 0;
+}
+
+/* 題庫勾選清單表格 */
+.questions-table-wrap {
+  max-height: 320px;
+  overflow-y: auto;
+  border: 1px solid var(--surface-border);
+  border-radius: 10px;
+  background: #0f172a;
+}
+
+.q-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.q-table th {
+  background: #1e293b; /* 採用實心深藍灰背景，徹底防止滾動時文字透過去造成重疊 */
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid var(--surface-border);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  color: #f1f5f9;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.q-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.q-table tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* 手機 RWD 適配 (極致精準版，360px~430px 手機 100% 完美排版) */
+@media (max-width: 640px) {
+  .game-header {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+  
+  /* 手機端隱藏非必要文字，只保留圖示，騰出最大寬度給標題 */
+  .nav-text {
+    display: none;
+  }
+  
+  .game-title {
+    font-size: 14.5px;
+    letter-spacing: -0.2px;
+  }
+  
+  .game-badge {
+    display: none; /* 手機端隱藏雙模式標籤，防止標題被垂直擠壓 */
+  }
+
+  .btn-icon-nav {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+
+  .app-container {
+    padding: 8px;
+    gap: 10px;
+  }
+
+  .status-bar-card {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .status-row-grid3 {
+    gap: 6px;
+  }
+
+  .status-card-square {
+    min-height: 44px;
+    padding: 4px 6px;
+    border-radius: 8px;
+  }
+
+  .status-card-header {
+    font-size: 10.5px;
+  }
+
+  .team-name-label {
+    white-space: nowrap;
+  }
+
+  .team-score-num {
+    font-size: 17px;
+  }
+
+  .timer-num {
+    font-size: 17px;
+  }
+
+  .btn-score-adjust {
+    width: 16px;
+    height: 16px;
+    font-size: 9px;
+  }
+
+  .play-picker-label {
+    font-size: 12px;
+  }
+
+  .play-category-select {
+    font-size: 12.5px;
+    padding: 6px 8px;
+  }
+
+  .stage-card {
+    min-height: 350px;
+    padding: 12px;
+  }
+
+  .category-and-index-bar {
+    gap: 6px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .draw-header-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 0;
+  }
+
+  .draw-secret-word-pill {
+    width: 100%;
+    text-align: center;
+    padding: 6px 12px;
+    font-size: 13.5px;
+    box-sizing: border-box;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .draw-category-wrap {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .draw-category-wrap .word-category-badge,
+  .draw-category-wrap .question-progress-pill,
+  .draw-category-wrap .passed-count-pill {
+    width: auto;
+    min-width: 0;
+    padding: 3px 8px;
+    font-size: 11px;
+    justify-content: center;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+  .word-category-badge {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+
+  .question-progress-pill {
+    padding: 4px 8px;
+    font-size: 11.5px;
+  }
+
+  .passed-count-pill {
+    padding: 4px 8px;
+    font-size: 11.5px;
+  }
+
+  .mode-switch-group {
+    margin-bottom: 12px;
+  }
+
+  .mode-btn {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+
+  .secret-word {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  .secret-word-box {
+    padding: 16px;
+    width: 95%;
+  }
+
+  .controls-bottom-bar {
+    grid-template-columns: 1fr 1.6fr 1fr;
+    gap: 6px;
+  }
+
+  .btn-action-correct {
+    font-size: 15px;
+    padding: 10px 8px;
+  }
+
+  .btn-action-pass, .btn-action-timer {
+    font-size: 12px;
+    padding: 10px 6px;
+  }
+}
